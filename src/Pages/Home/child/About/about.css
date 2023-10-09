@@ -1,0 +1,148 @@
+.about_container{
+  display: flex;
+  margin-bottom: 5%;
+}
+
+.about__section{
+  padding-bottom: 5%;
+  background-color:  white;
+  color: rgb(8, 8, 8);
+}
+
+
+.about__img{
+  margin-right: 5%;
+}
+.about__img img{
+ width: 500px;
+ height: 500px;
+ margin-top: 5%;
+ border-radius: 25px;
+}
+
+.section__title1{
+  font-family: 'Seaweed Script', cursive;
+  font-size: 40px;
+  color: rgb(65, 179, 84);
+  display: flex;
+  padding-left: 15%;
+}
+
+.section__title{
+  font-size: 50px;
+  font-weight: 500;
+  color: Black;
+  padding-top: 10%;
+  display: flex;
+  padding-left: 15%;
+}
+
+.about__content{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.about__data {
+  padding-top: 1%;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+@media screen and (max-width: 659px) {
+  .about__img img{
+    width: 250px;
+    height: 450px;
+    margin-top: 40%;
+    border-radius: 25px;
+   }
+
+   .section__title1{
+    font-family: 'Seaweed Script', cursive;
+    font-size: 20px;
+    color: rgb(65, 179, 84);
+    display: flex;
+    padding-left: 10%;
+  }
+
+  .section__title{
+    font-size: 20px;
+    font-weight: 500;
+    color: Black;
+    margin-top: 15%;
+    display: flex;
+    padding-left: 10%;
+  }
+
+  .about__content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .about__data {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  
+}
+
+@media screen and (min-width: 1440px){
+  .about_container{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .about__img img{
+    width: 800px;
+    height: 600px;
+    margin-top: 15%;
+    border-radius: 25px;
+   }
+   
+   .section__title1{
+     font-family: 'Seaweed Script', cursive;
+     font-size: 70px;
+     color: rgb(65, 179, 84);
+     display: flex;
+     padding-left: 15%;
+   }
+   
+   .section__title{
+     font-size: 70px;
+     font-weight: 500;
+     color: Black;
+     padding-top: 10%;
+     display: flex;
+     padding-left: 15%;
+   }
+   
+   .about__content{
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     padding-left: 15%;
+     padding-right: 15%;
+     font-size: 25px;
+   }
+   
+   .about__data {
+     padding-top: 1%;
+     padding-left: 15%;
+     padding-right: 15%;
+     font-size: 25px;
+   }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+
+.multi-step-form {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+
+  .step-indicators {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+   
+  }
+
+  .step-indicators:hover{
+    cursor: pointer;
+  }
+
+  .step {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-top: 5%;
+  }
+  
+  .step.active {
+    color: rgb(65, 179, 84); 
+  }
+  
+
+  .step-content {
+    margin-bottom: 20px;
+  }
+  
+
+  .button {
+    padding: 10px 20px;
+    background-color: rgb(65, 179, 84);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color:rgb(65, 179, 84);
+  }
+  
+
+  .progress-bar {
+    background-color: #ccc;
+    height: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .progress-fill {
+    background-color: rgb(65, 179, 84);
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .step {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-top: 5%;
+  }
+
+  
+
+
+    
