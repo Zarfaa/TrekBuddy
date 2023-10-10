@@ -22,16 +22,19 @@ let NavBar = () => {
             <Link id="text" to="/myaccount">Destinations</Link>
           </div>
         </div>
+
         {isUserAuthenticated ? (
           <Link id="text" to="/myaccount">My Account</Link>
         ) : (
-          <div className="dropdown">
-            <button className="dropbtn" id="text"><i className="fa fa-fw fa-user"></i>Signup </button>
-            <div className="dropdown-content">
-              <Link to="/UserSignUP">Signup as User</Link>
-              <Link to="/VendorSignUP">Signup as Vendor</Link>
+          !isVendorAuthenticated && (
+            <div className="dropdown">
+              <button className="dropbtn" id="text"><i className="fa fa-fw fa-user"></i>Signup </button>
+              <div className="dropdown-content">
+                <Link to="/UserSignUP">Signup as User</Link>
+                <Link to="/VendorSignUP">Signup as Vendor</Link>
+              </div>
             </div>
-          </div>
+          )
         )}
 
         {isVendorAuthenticated && (
