@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { login } from "../../Redux/Actions/auth.action";
+import { Userlogin } from "../../Redux/Actions/auth.action";
 import { useDispatch, useSelector } from "react-redux";
 
 let Login = () => {
@@ -29,7 +29,7 @@ let Login = () => {
       return
     }
     setLoading(true)
-    dispatch(login(loginData, setError));
+    dispatch(Userlogin(loginData, setError));
   };
 
   useEffect(() => {

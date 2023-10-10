@@ -1,15 +1,19 @@
 import axios from "../../utils/axios";
 import { getTokenIncludedConfig } from "./common";
 import {
-  LOGIN_FAIL,
+  USER_LOGIN_FAIL,
+  USER_LOGIN_SUCCESS,
+  VENDOR_LOGIN_FAIL,
+  VENDOR_LOGIN_SUCCESS,
   PROFILE_FAIL,
-  REGISTER_FAIL,
-  LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
   PROFILE_SUCCESS,
-  REGISTER_SUCCESS,
   AUTHENTICATE_FAIL,
   AUTHENTICATE_SUCCESS,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
+  VENDOR_REGISTER_SUCCESS,
+  VENDOR_REGISTER_FAIL,
   RESET_FAIL,
   RESET_SUCCESS,
   PASSWORD_RESET_CONFIRM_SUCCESS,
@@ -18,49 +22,72 @@ import {
 
 import axiosInstance from "../../utils/axios";
 
-// REGIGSTER ACTION
-export const register = (data, setError) => async (dispatch) => {
+// USER SIGNUP ACTION
+export const registerUser = (data, setError) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
     const res = await axiosInstance.post("user/signup", body);
     dispatch({
-      type: REGISTER_SUCCESS,
+      type: USER_REGISTER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+    setError(error.res.data);
+    dispatch({
+      type: USER_REGISTER_FAIL,
+    });
+  }
+};
+
+// VENDOR SIGNUP ACTION
+export const registerVendor = (data, setError) => async (dispatch) => {
+  const body = JSON.stringify(data);
+  try {
+    const res = await axiosInstance.post("http://localhost:4000/user/signup", body);
+    dispatch({
+      type: VENDOR_REGISTER_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
     setError(error.response.data);
     dispatch({
-      type: REGISTER_FAIL,
+      type: VENDOR_REGISTER_FAIL,
     });
   }
 };
 // LOGIN ACTION
-export const login = (data, setError) => async (dispatch) => {
+export const Vendorlogin = (data) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
     const res = await axios.post("user/login", body);
-    if (res && res.data) {
       dispatch({
-        type: LOGIN_SUCCESS,
+        type: VENDOR_LOGIN_SUCCESS,
         payload: res.data,
       });
-    } else {
-      setError("Login failed. Please check your credentials.");
-      dispatch({
-        type: LOGIN_FAIL,
-      });
-    }
   } catch (error) {
-    if (error.response && error.response.data) {
-      setError(error.response.data);
-    } else {
-      setError("An error occurred while logging in.");
-    }
     dispatch({
-      type: LOGIN_FAIL,
+      type: VENDOR_LOGIN_FAIL,
     });
   }
 };
+
+export const Userlogin = (data) => async (dispatch) => {
+  const body = JSON.stringify(data);
+  try {
+    const res = await axiosInstance.post("user/login", body);
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: res.data,
+      });
+  } catch (error) {
+    dispatch({
+      type: USER_LOGIN_FAIL,
+    });
+  }
+};
+
+/*
 
 export const getProfile = () => async (dispatch) => {
   try {
@@ -88,7 +115,7 @@ export const checkAuthenticated = () => async (dispatch) => {
       type: AUTHENTICATE_FAIL,
     });
   }
-};
+};*/
 
 
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { register } from "../../Redux/Actions/auth.action";
+import { registerUser} from "../../Redux/Actions/auth.action";
 
 const UserSignup = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const UserSignup = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear the error when the user starts typing
+    setErrors({ ...errors, [name]: "" }); 
   };
 
   const validateForm = () => {
@@ -72,33 +72,25 @@ const UserSignup = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (validateForm()) {
-      // Form submission logic goes here
-      console.log("Form submitted:", userData);
-
-      // Assuming signupData and trimmedPassword are defined somewhere in your code
       const signupData = { ...userData };
       const trimmedPassword = userData.password.trim();
-
-      dispatch(
-        register({ ...signupData, password: trimmedPassword }, (error) => {
-          if (error) {
-            toast.error(error);
-          } else {
-            toast.success(
-              "Welcome to TrekBuddy. Your Registration was successful."
-            );
-          }
-        })
-      );
+  
+      try {
+        await dispatch(registerUser({ ...signupData, password: trimmedPassword }));
+        toast.success("Welcome to TrekBuddy. Your Registration was successful.");
+      } catch (error) {
+        console.error("Registration failed:", error);
+        toast.error( "Registration failed");
+      }
     } else {
       console.log("Form has errors");
     }
   };
-
+  
 
   return (
     <>
@@ -163,6 +155,7 @@ const UserSignup = () => {
               value="male"
               type="radio"
               id="genderMale"
+              onChange={handleInputChange }
               required
             />
             <label htmlFor="genderMale">Male</label>
@@ -171,6 +164,7 @@ const UserSignup = () => {
               value="female"
               type="radio"
               id="genderFemale"
+              onChange={handleInputChange }
               required
             />
             <label htmlFor="genderFemale">Female</label>
@@ -178,7 +172,7 @@ const UserSignup = () => {
 
           <div>
             <label htmlFor="role">Role:</label>
-            <select id="role" name="role" value={userData.role} required>
+            <select id="role" name="role" value={userData.role} required  onChange={handleInputChange }>
               <option value="vendor">Vendor</option>
               <option value="user">User</option>
             </select>

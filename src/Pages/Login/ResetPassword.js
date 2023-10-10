@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { login } from "../../Redux/Actions/auth.action";
+import { reset_password } from "../../Redux/Actions/auth.action";
 import { useDispatch } from "react-redux";
 
-const AccountSetting = () => {
+const ResetPassword = () => {
   const dispatch = useDispatch();
   const [AccountData, setAccountData] = useState({
     Currentpassword: "",
@@ -13,7 +13,6 @@ const AccountSetting = () => {
   });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(true);
-  const [loading, setLoading] = useState(false)
 
   const onChange = (e) =>
     setAccountData({ ...AccountData, [e.target.name]: e.target.value });
@@ -27,14 +26,10 @@ const AccountSetting = () => {
       return;
     }
 
-    setLoading(true)
+    dispatch(reset_password(AccountData, setError));
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+
 
   if (error) {
     toast.error(error.detail);
@@ -121,13 +116,6 @@ const AccountSetting = () => {
           <div className="form-group">
             <div className="fxt-transformY-50 fxt-transition-delay-4">
               <button type="submit" className="btn btn-primary">
-                {loading ? (
-                  <div class="spinner-border text-light" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                ) : (
-                  ""
-                )}
                 Reset
               </button>
             </div>
@@ -138,4 +126,4 @@ const AccountSetting = () => {
   )
 }
 
-export default AccountSetting
+export default ResetPassword
