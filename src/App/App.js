@@ -18,6 +18,7 @@ import { Provider } from 'react-redux';
 import store from '../Redux/Store';
 import ConfirmOTP from '../Pages/Login/ConfirmOTP';
 import ResetPassword from '../Pages/Login/ResetPassword';
+import Destinations from '../Pages/Destinations';
 function App() {
   return (
     <div className="App">
@@ -27,6 +28,7 @@ function App() {
           <ToastContainer />
           <Routes>
             <Route path="/" element={<Home />}></Route>
+            <Route path="/destinations" element={<Destinations />}></Route>
             <Route path="/UserSignup" element={<UserSignup />}></Route>
             <Route path="/VendorSignup" element={<VendorSignup />}></Route>
             <Route path="/myaccount" element={<MyAccount />} />

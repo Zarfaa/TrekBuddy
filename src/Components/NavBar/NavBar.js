@@ -19,7 +19,7 @@ let NavBar = () => {
             <Link id="text" to="/">Home</Link>
           </div>
           <div>
-            <Link id="text" to="/myaccount">Destinations</Link>
+            <Link id="text" to="/destinations">Destinations</Link>
           </div>
         </div>
 
