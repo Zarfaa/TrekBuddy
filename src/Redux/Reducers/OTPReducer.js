@@ -22,15 +22,25 @@ const OTPReducer = (state = initialstate, action) => {
        case SEND_OTP_SUCCESS:
        case VERIFY_OTP_SUCCESS:
        case RESEND_OTP_SUCCESS:
-        case RESET_SUCCESS:
             localStorage.setItem("access", payload.access_token);
             return {
                 ...state,
                 access: payload.access_token,  
             };
 
+            case RESET_FAIL:
+                return {
+                  ...state,
+                  isReset: payload,
+                };
+
+                case RESET_SUCCESS:
+                    return {
+                      ...state,
+                      isReset: payload,
+                    };
+
            case RESEND_OTP_FAIL:
-           case RESET_FAIL:
             case SEND_OTP_FAIL:
            case  VERIFY_OTP_FAIL:
             localStorage.removeItem("access");

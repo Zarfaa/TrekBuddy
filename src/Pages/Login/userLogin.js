@@ -121,7 +121,7 @@ const UserLogin = () => {
               } toggle-password field-icon`}
           ></i>
         </div>
-        <Link to ="/OTP"><div><button type="button" className="Forget_password" >Forgot Password</button></div></Link>
+        <Link to ="/sendOTP"><div><button type="button" className="Forget_password" >Forgot Password</button></div></Link>
         
           {errors.email && <p className="error-message">{errors.email}</p>}
           {errors.password && (
