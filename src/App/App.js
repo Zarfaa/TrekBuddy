@@ -1,6 +1,8 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "../Components/NavBar/NavBar"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from '../Pages/Home/index';
 import UserSignup from "../Pages/Signup/UserSignUP"
 import VendorSignup from "../Pages/Signup/VendorSignUP"
@@ -22,6 +24,7 @@ function App() {
       <BrowserRouter>
         <Provider store={store}>
           <NavBar />
+          <ToastContainer />
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/UserSignup" element={<UserSignup />}></Route>
