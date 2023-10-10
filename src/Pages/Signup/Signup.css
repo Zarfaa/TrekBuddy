@@ -17,28 +17,13 @@
   padding: 5%;
 }
 
+input[type="radio"] {
+  margin: 0; 
+  padding: 0; 
+}
+
 #login {
   color: rgb(65, 179, 84);
-}
-
-.form_group {
-  display: flex;
-  align-items: center;
-}
-
-.form_group label {
-  min-width: 100px;
-}
-
-.form_group input,
-.form_group select {
-  flex: 1;
-  padding: 1%;
-}
-
-.radio_group {
-  display: flex;
-  gap: 10px;
 }
 
 .button_container button {
@@ -52,5 +37,18 @@
 
 .button_container button:hover {
   color:  rgb(65, 179, 84);
+  background-color: white;
   border: 1px solid  rgb(65, 179, 84);
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.field-icon {
+  position: absolute;
+  right: 10px;  /* Adjust the right value as needed */
+  top: 50%;    /* Center the icon vertically */
+  transform: translateY(-50%);
+  cursor: pointer;
 }

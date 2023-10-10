@@ -4,11 +4,13 @@ import NavBar from "../Components/NavBar/NavBar"
 import Home from '../Pages/Home/index';
 import UserSignup from "../Pages/Signup/UserSignUP"
 import VendorSignup from "../Pages/Signup/VendorSignUP"
-import Login from "../Pages/Login/Login"
+import UserLogin from "../Pages/Login/userLogin"
+import VendorLogin from "../Pages/Login/vendorLogin"
 import OTP from '../Pages/Login/OTP';
 import Footer from "../Components/Footer/Footer"
-import VendorPortal from '../Components/VendorPortal/index';
-import MultiStepForm from '../Components/VendorPortal/Form';
+import ListProperty from '../Components/ListProperty/index';
+import VendorPortal from '../Components/VendorAccount/index';
+import MultiStepForm from '../Components/ListProperty/Form';
 import MyAccount from '../Components/MyAccount';
 import { Provider } from 'react-redux';
 import store from '../Redux/Store';
@@ -25,10 +27,12 @@ function App() {
             <Route path="/UserSignup" element={<UserSignup />}></Route>
             <Route path="/VendorSignup" element={<VendorSignup />}></Route>
             <Route path="/myaccount" element={<MyAccount />} />
-            <Route path="/Login" element={<Login />}></Route>
+            <Route path="/userLogin" element={<UserLogin />}></Route>
+            <Route path="/vendorLogin" element={<VendorLogin />}></Route>
             <Route path="/OTP" element={<OTP />}></Route>
             <Route path="/ConfirmOTP" element={<ConfirmOTP />}></Route>
             <Route path="/resetpassword" element={<ResetPassword />}></Route>
+            <Route path="/listproperty" element={<ListProperty />}></Route>
             <Route path="/vendorportal" element={<VendorPortal />}></Route>
             <Route path="/listing" element={<MultiStepForm />}></Route>
           </Routes>

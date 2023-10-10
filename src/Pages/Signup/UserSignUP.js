@@ -1,27 +1,31 @@
 import "./Signup.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { registerUser} from "../../Redux/Actions/auth.action";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const UserSignup = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(true);
+  const { isUserAuthenticated } = useSelector((state) => state.userAuth);
   const [userData, setUserData] = useState({
-    userName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
-    dateOfBirth: "",
-    gender: "",
+    DateOfBirth: "",
+    Gender: "",
     role: "",
-    contactNumber: "",
+    phoneNumber: "",
   });
 
   const [errors, setErrors] = useState({
     email: "",
     password: "",
-    dateOfBirth: "",
-    contactNumber: "",
+    DateOfBirth: "",
+    phoneNumber: "",
   });
 
   const handleInputChange = (e) => {
@@ -33,7 +37,7 @@ const UserSignup = () => {
   const validateForm = () => {
     let isValid = true;
 
-    // Validate email
+
     if (!userData.email.includes("@")) {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -52,19 +56,19 @@ const UserSignup = () => {
     }
 
     // Validate date of birth (you might want to add more specific validation)
-    if (!userData.dateOfBirth) {
+    if (!userData.DateOfBirth) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        dateOfBirth: "Date of Birth is required",
+        DateOfBirth: "Date of Birth is required",
       }));
       isValid = false;
     }
 
     // Validate contact number
-    if (!/^[0-9]*$/.test(userData.contactNumber)) {
+    if (!/^[0-9]*$/.test(userData.phoneNumber)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        contactNumber: "Contact Number must contain only numbers",
+        phoneNumber: "Contact Number must contain only numbers",
       }));
       isValid = false;
     }
@@ -72,43 +76,75 @@ const UserSignup = () => {
     return isValid;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     if (validateForm()) {
+      // Form submission logic goes here
+      console.log("Form submitted:", userData);
+
+      // Assuming signupData and trimmedPassword are defined somewhere in your code
       const signupData = { ...userData };
       const trimmedPassword = userData.password.trim();
-  
-      try {
-        await dispatch(registerUser({ ...signupData, password: trimmedPassword }));
-        toast.success("Welcome to TrekBuddy. Your Registration was successful.");
-      } catch (error) {
-        console.error("Registration failed:", error);
-        toast.error( "Registration failed");
-      }
+
+      dispatch(
+        registerUser({ ...signupData, password: trimmedPassword }, (error) => {
+          if (error) {
+            toast.error(error);
+          } else {
+            toast.success(
+              "Welcome to TrekBuddy. Your Registration was successful."
+            );
+          }
+        })
+      );
     } else {
       console.log("Form has errors");
     }
   };
-  
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  if (isUserAuthenticated) {
+    return <Navigate replace to="/" />;
+  }
+
+
 
   return (
     <>
       <form className="account_Container" onSubmit={handleSubmit}>
         <p>
-          Already Have an account? <Link to="/login" id="login">Login</Link>
+          Already Have an account?{" "}
+          <Link to="/userLogin" >
+            Login
+          </Link>
         </p>
         <div className="ContentBorder">
-          <h2 className="Title">Sign Up</h2>
+          <h2 className="Title">User Sign Up</h2>
           <div>
-            <label htmlFor="userName">Username:</label>
+            <label htmlFor="firstName">FirstName:</label>
             <input
-              name="userName"
-              value={userData.userName}
+              name="firstName"
+              value={userData.firstName}
               type="text"
-              id="userName"
+              id="firstName"
               required
-              onChange={handleInputChange }
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="lastName">LastName:</label>
+            <input
+              name="lastName"
+              value={userData.lastName}
+              type="text"
+              id="lastName"
+              required
+              onChange={handleInputChange}
             />
           </div>
 
@@ -120,80 +156,101 @@ const UserSignup = () => {
               type="email"
               id="email"
               required
-              onChange={handleInputChange }
+              onChange={handleInputChange}
             />
           </div>
 
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              name="password"
-              value={userData.password}
-              type="password"
-              id="password"
-              required
-              onChange={handleInputChange }
-            />
-          </div>
+          <div className="input-with-icon">
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            className="form-control"
+            name="password"
+            placeholder="Password"
+            required="required"
+            autoComplete="password"
+            value={userData.password}
+            onChange={handleInputChange}
+          />
+          <i
+            onClick={togglePasswordVisibility}
+            className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
+              } toggle-password field-icon`}
+          ></i>
+        </div>
 
           <div>
-            <label htmlFor="dateOfBirth">Date of Birth:</label>
+            <label htmlFor="DateOfBirth">Date of Birth:</label>
             <input
-              name="dateOfBirth"
-              value={userData.dateOfBirth}
-              type="date"
-              id="dateOfBirth"
-              onChange={handleInputChange }
+              name="DateOfBirth"
+              value={userData.DateOfBirth}
+              placeholder="MM/DD/YY"
+              id="DateOfBirth"
+              onChange={handleInputChange}
               required
             />
           </div>
 
           <div>
             <label>Gender:</label>
+            <label htmlFor="GenderMale">Male
             <input
-              name="gender"
-              value="male"
+              name="Gender"
+              value="Male"
               type="radio"
-              id="genderMale"
-              onChange={handleInputChange }
+              id="GenderMale"
+              onChange={handleInputChange}
               required
             />
-            <label htmlFor="genderMale">Male</label>
+            </label>
+            <label htmlFor="GenderFemale">Female</label>
             <input
-              name="gender"
-              value="female"
+              name="Gender"
+              value="Female"
               type="radio"
-              id="genderFemale"
-              onChange={handleInputChange }
+              id="GenderFemale"
+              onChange={handleInputChange}
               required
             />
-            <label htmlFor="genderFemale">Female</label>
           </div>
 
           <div>
             <label htmlFor="role">Role:</label>
-            <select id="role" name="role" value={userData.role} required  onChange={handleInputChange }>
+            <select
+              id="role"
+              name="role"
+              value={userData.role}
+              required
+              onChange={handleInputChange}
+            >
               <option value="vendor">Vendor</option>
               <option value="user">User</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="contactNumber">Contact Number:</label>
+            <label htmlFor="phoneNumber">Contact Number:</label>
             <input
-              name="contactNumber"
-              value={userData.contactNumber}
+              name="phoneNumber"
+              value={userData.phoneNumber}
               type="tel"
-              id="contactNumber"
+              id="phoneNumber"
               pattern="[0-9]*"
-              onChange={handleInputChange }
+              onChange={handleInputChange}
               required
             />
           </div>
           {errors.email && <p className="error-message">{errors.email}</p>}
-        {errors.password && <p className="error-message">{errors.password}</p>}
-        {errors.dateOfBirth && <p className="error-message">{errors.dateOfBirth}</p>}
-        {errors.contactNumber && <p className="error-message">{errors.contactNumber}</p>}
+          {errors.password && (
+            <p className="error-message">{errors.password}</p>
+          )}
+          {errors.DateOfBirth && (
+            <p className="error-message">{errors.DateOfBirth}</p>
+          )}
+          {errors.phoneNumber && (
+            <p className="error-message">{errors.phoneNumber}</p>
+          )}
 
           <div className="button_container">
             <button type="submit">Submit</button>

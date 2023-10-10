@@ -1,15 +1,10 @@
 import axios from "../../utils/axios";
-import { getTokenIncludedConfig } from "./common";
 import {
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
   VENDOR_LOGIN_FAIL,
   VENDOR_LOGIN_SUCCESS,
-  PROFILE_FAIL,
   LOGOUT_SUCCESS,
-  PROFILE_SUCCESS,
-  AUTHENTICATE_FAIL,
-  AUTHENTICATE_SUCCESS,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   VENDOR_REGISTER_SUCCESS,
@@ -20,13 +15,12 @@ import {
   PASSWORD_RESET_CONFIRM_FAIL,
 } from "./index";
 
-import axiosInstance from "../../utils/axios";
 
 // USER SIGNUP ACTION
 export const registerUser = (data, setError) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
-    const res = await axiosInstance.post("user/signup", body);
+    const res = await axios.post("user/signup", body);
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: res.data,
@@ -44,7 +38,7 @@ export const registerUser = (data, setError) => async (dispatch) => {
 export const registerVendor = (data, setError) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
-    const res = await axiosInstance.post("http://localhost:4000/user/signup", body);
+    const res = await axios.post("vendor/signup", body);
     dispatch({
       type: VENDOR_REGISTER_SUCCESS,
       payload: res.data,
@@ -57,10 +51,10 @@ export const registerVendor = (data, setError) => async (dispatch) => {
   }
 };
 // LOGIN ACTION
-export const Vendorlogin = (data) => async (dispatch) => {
+export const vendorLogin = (data) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
-    const res = await axios.post("user/login", body);
+    const res = await axios.post("vendor/login", body);
       dispatch({
         type: VENDOR_LOGIN_SUCCESS,
         payload: res.data,
@@ -72,10 +66,10 @@ export const Vendorlogin = (data) => async (dispatch) => {
   }
 };
 
-export const Userlogin = (data) => async (dispatch) => {
+export const userLogin = (data) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
-    const res = await axiosInstance.post("user/login", body);
+    const res = await axios.post("user/login", body);
       dispatch({
         type: USER_LOGIN_SUCCESS,
         payload: res.data,

@@ -7,7 +7,7 @@ import { Tab, Row, Col, Nav } from "react-bootstrap";
 import { logout } from "../../Redux/Actions/auth.action";
 import AccountSetting from "./AccountSetting";
 import "./style.css"
-function MyAccount() {
+function VendorPortal() {
   const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
 
@@ -55,4 +55,4 @@ function MyAccount() {
   );
 }
 
-export default MyAccount;
+export default VendorPortal;
