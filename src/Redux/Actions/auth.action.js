@@ -9,10 +9,14 @@ import {
   USER_REGISTER_FAIL,
   VENDOR_REGISTER_SUCCESS,
   VENDOR_REGISTER_FAIL,
-  RESET_FAIL,
+  SEND_OTP_SUCCESS,
+  VERIFY_OTP_SUCCESS,
+  RESEND_OTP_SUCCESS,
   RESET_SUCCESS,
-  PASSWORD_RESET_CONFIRM_SUCCESS,
-  PASSWORD_RESET_CONFIRM_FAIL,
+  RESEND_OTP_FAIL,
+  RESET_FAIL,
+  SEND_OTP_FAIL,
+  VERIFY_OTP_FAIL,
 } from "./index";
 
 
@@ -114,35 +118,62 @@ export const checkAuthenticated = () => async (dispatch) => {
 
 
 // FORGOT PASSWORD ACTION
-export const reset_password = (email, setError) => async (dispatch) => {
+export const reset_password = (email) => async (dispatch) => {
   const body = JSON.stringify({ email });
   try {
-    const res = await axios.post(``, body);
+    const res = await axios.post("/resetPassword", body);
     dispatch({
       type: RESET_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
-    setError(error.response.data);
     dispatch({
       type: RESET_FAIL,
     });
   }
 };
 
-export const reset_password_confirm =
-  (uid, token, new_password, re_new_password, setError) => async (dispatch) => {
-    const body = JSON.stringify({ uid, token, new_password, re_new_password });
+export const verify_OTP = (data) => async (dispatch) => {
+    const body = JSON.stringify({ data});
     try {
-      const res = await axios.post(``, body);
+      const res = await axios.post("/resend-otp", body);
       dispatch({
-        type: PASSWORD_RESET_CONFIRM_SUCCESS,
+        type: VERIFY_OTP_SUCCESS,
         payload: res.data,
       });
     } catch (error) {
-      setError(error.response.data);
       dispatch({
-        type: PASSWORD_RESET_CONFIRM_FAIL,
+        type: VERIFY_OTP_FAIL,
+      });
+    }
+  };
+
+  export const send_OTP = (data) => async (dispatch) => {
+    const body = JSON.stringify({ data});
+    try {
+      const res = await axios.post("/send-otp", body);
+      dispatch({
+        type: SEND_OTP_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: SEND_OTP_FAIL,
+      });
+    }
+  };
+
+  export const resend_OTP = (data) => async (dispatch) => {
+    const body = JSON.stringify({ data});
+    try {
+      const res = await axios.post("/resend-otp", body);
+      dispatch({
+        type: RESEND_OTP_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: RESEND_OTP_FAIL,
       });
     }
   };

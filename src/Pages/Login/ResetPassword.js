@@ -14,10 +14,10 @@ const ResetPassword = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(true);
 
-  const onChange = (e) =>
+  const inputHandler = (e) =>
     setAccountData({ ...AccountData, [e.target.name]: e.target.value });
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -43,7 +43,7 @@ const ResetPassword = () => {
     <div>
       <h1 >Account Setting</h1>
       <div className="fxt-form">
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={handleSubmit}>
         <div className="form-group">
             <div className="fxt-transformY-50 fxt-transition-delay-2">
               <div className="input-with-icon">
@@ -56,7 +56,7 @@ const ResetPassword = () => {
                   required="required"
                   autoComplete="Currentpassword"
                   value={AccountData.Currentpassword}
-                  onChange={(e) => onChange(e)}
+                  onChange={inputHandler}
                 />
                 <i
                   onClick={togglePasswordVisibility}
@@ -79,7 +79,7 @@ const ResetPassword = () => {
                   required="required"
                   autoComplete="Newpassword"
                   value={AccountData.Newpassword}
-                  onChange={(e) => onChange(e)}
+                  onChange={inputHandler}
                 />
                 <i
                   onClick={togglePasswordVisibility}
@@ -102,7 +102,7 @@ const ResetPassword = () => {
                   required="required"
                   autoComplete="Confirmpassword"
                   value={AccountData.Confirmpassword}
-                  onChange={(e) => onChange(e)}
+                  onChange={inputHandler}
                 />
                 <i
                   onClick={togglePasswordVisibility}
@@ -115,7 +115,7 @@ const ResetPassword = () => {
 
           <div className="form-group">
             <div className="fxt-transformY-50 fxt-transition-delay-4">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn" style={{ backgroundColor: "#41b354", color: "white" }}>
                 Reset
               </button>
             </div>

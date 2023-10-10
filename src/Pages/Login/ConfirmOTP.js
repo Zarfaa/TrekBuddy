@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { verify_OTP } from "../../Redux/Actions/auth.action";
+import { useDispatch } from "react-redux";
 
 const ConfirmOTP = () => {
+  const dispatch = useDispatch();
   const [otp, setOtp] = useState('');
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('OTP submitted:', otp);
+    dispatch(verify_OTP(otp));
   };
 
   return (

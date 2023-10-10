@@ -8,7 +8,8 @@ import UserSignup from "../Pages/Signup/UserSignUP"
 import VendorSignup from "../Pages/Signup/VendorSignUP"
 import UserLogin from "../Pages/Login/userLogin"
 import VendorLogin from "../Pages/Login/vendorLogin"
-import OTP from '../Pages/Login/OTP';
+import SendOTP from '../Pages/Login/SendOTP';
+import ReSendOTP from '../Pages/Login/resendOTP';
 import Footer from "../Components/Footer/Footer"
 import ListProperty from '../Components/ListProperty/index';
 import VendorPortal from '../Components/VendorAccount/index';
@@ -34,8 +35,9 @@ function App() {
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/userLogin" element={<UserLogin />}></Route>
             <Route path="/vendorLogin" element={<VendorLogin />}></Route>
-            <Route path="/OTP" element={<OTP />}></Route>
+            <Route path="/sendOTP" element={<SendOTP />}></Route>
             <Route path="/ConfirmOTP" element={<ConfirmOTP />}></Route>
+            <Route path="/resendOTP" element={<ReSendOTP  />}></Route>
             <Route path="/resetpassword" element={<ResetPassword />}></Route>
             <Route path="/listproperty" element={<ListProperty />}></Route>
             <Route path="/vendorportal" element={<VendorPortal />}></Route>
