@@ -40,16 +40,16 @@ const ResetPassword = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <div>
-      <h1 >Account Setting</h1>
+    <div  style={{margin:"10% 30%", padding: "5%"}} className='card'>
+      <h1 >Reset Password</h1>
       <div className="fxt-form">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}  >
         <div className="form-group">
             <div className="fxt-transformY-50 fxt-transition-delay-2">
               <div className="input-with-icon">
                 <input
                   id="Currentpassword"
-                  type={showPassword ? "text" : "Currentpassword"}
+                  type={showPassword ? "text" : "password"}
                   className="form-control mb-3"
                   name="Currentpassword"
                   placeholder="Currentpassword"
@@ -75,7 +75,7 @@ const ResetPassword = () => {
                   type={showPassword ? "text" : "password"}
                   className="form-control mb-3 "
                   name="Newpassword"
-                  placeholder="Newpassword"
+                  placeholder="New Password"
                   required="required"
                   autoComplete="Newpassword"
                   value={AccountData.Newpassword}
@@ -95,7 +95,7 @@ const ResetPassword = () => {
               <div className="input-with-icon">
                 <input
                   id="Confirmpassword"
-                  type={showPassword ? "text" : "Confirmpassword"}
+                  type={showPassword ? "text" : "password"}
                   className="form-control mb-3"
                   name="Confirmpassword"
                   placeholder="Confirmpassword"

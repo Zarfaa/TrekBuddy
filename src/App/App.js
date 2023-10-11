@@ -17,7 +17,7 @@ import MultiStepForm from '../Components/ListProperty/Form';
 import MyAccount from '../Components/MyAccount';
 import { Provider } from 'react-redux';
 import store from '../Redux/Store';
-import ConfirmOTP from '../Pages/Login/ConfirmOTP';
+import ConfirmOTP from '../Pages/Login/VerifyOTP';
 import ResetPassword from '../Pages/Login/ResetPassword';
 import Destinations from '../Pages/Destinations';
 function App() {
@@ -36,7 +36,7 @@ function App() {
             <Route path="/userLogin" element={<UserLogin />}></Route>
             <Route path="/vendorLogin" element={<VendorLogin />}></Route>
             <Route path="/sendOTP" element={<SendOTP />}></Route>
-            <Route path="/ConfirmOTP" element={<ConfirmOTP />}></Route>
+            <Route path="/verifyOTP" element={<ConfirmOTP />}></Route>
             <Route path="/resendOTP" element={<ReSendOTP  />}></Route>
             <Route path="/resetpassword" element={<ResetPassword />}></Route>
             <Route path="/listproperty" element={<ListProperty />}></Route>
