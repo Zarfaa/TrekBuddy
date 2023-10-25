@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { resend_OTP  } from "../../Redux/Actions/auth.action";
+import { resendUserOTP } from "../../../Redux/Actions/UserActions";
 import { useDispatch } from "react-redux";
 
 const ReSendOTP = () => {
@@ -8,7 +8,7 @@ const ReSendOTP = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(resend_OTP (email));
+    dispatch(resendUserOTP(email));
   };
 
   return (

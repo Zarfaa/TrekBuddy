@@ -6,10 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from '../Pages/Home/index';
 import UserSignup from "../Pages/Signup/UserSignUP"
 import VendorSignup from "../Pages/Signup/VendorSignUP"
-import UserLogin from "../Pages/Login/userLogin"
-import VendorLogin from "../Pages/Login/vendorLogin"
-import SendOTP from '../Pages/Login/SendOTP';
-import ReSendOTP from '../Pages/Login/resendOTP';
+import UserLogin from "../Pages/Login/User/UserLogin"
+import VendorLogin from "../Pages/Login/Vendor/VendorLogin"
+import SendOTP from '../Pages/Login/User/SendOTP';
+import ReSendOTP from '../Pages/Login/User/ResendOTP';
 import Footer from "../Components/Footer/Footer"
 import ListProperty from '../Components/ListProperty/index';
 import VendorPortal from '../Components/VendorAccount/index';
@@ -17,8 +17,8 @@ import MultiStepForm from '../Components/ListProperty/Form';
 import MyAccount from '../Components/MyAccount';
 import { Provider } from 'react-redux';
 import store from '../Redux/Store';
-import ConfirmOTP from '../Pages/Login/VerifyOTP';
-import ResetPassword from '../Pages/Login/ResetPassword';
+import ConfirmOTP from '../Pages/Login/User/VerifyOTP';
+import ResetPassword from '../Pages/Login/User/ResetPassword';
 import Destinations from '../Pages/Destinations';
 function App() {
   return (

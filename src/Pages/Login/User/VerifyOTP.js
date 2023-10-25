@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { verify_OTP } from "../../Redux/Actions/auth.action";
+import { verifyUserOTP } from "../../../Redux/Actions/UserActions";
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 const ConfirmOTP = () => {
@@ -8,7 +8,7 @@ const ConfirmOTP = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(verify_OTP(otp));
+    dispatch(verifyUserOTP(otp));
   };
 
   return (

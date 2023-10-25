@@ -13,6 +13,7 @@ const AccountSetting = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [loading, setLoading] = useState(false)
 
+
   const onChange = (e) =>
     setAccountData({ ...AccountData, [e.target.name]: e.target.value });
 
@@ -43,18 +44,14 @@ const AccountSetting = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <div>
-      <h1 >Account Setting</h1>
+    <div className='Profile_Data'>
+      <h1 >Change Password</h1>
       <div className="fxt-form">
         <form onSubmit={(e) => onSubmit(e)}>
-          <div className="form-group">
-            <div className="fxt-transformY-50 fxt-transition-delay-2">
-              <div className="input-with-icon">
                 <input
                   id="Currentpassword"
                   type={showPassword ? "text" : "password"}
                   className="form-control mb-3"
-                  name="Currentpassword"
                   placeholder="Current Password"
                   required
                   autoComplete="Currentpassword"
@@ -66,18 +63,11 @@ const AccountSetting = () => {
                   className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
                     } toggle-password field-icon`}
                 ></i>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <div className="fxt-transformY-50 fxt-transition-delay-2">
-              <div className="input-with-icon">
+           
                 <input
                   id="Newpassword"
                   type={showPassword ? "text" : "password"}
                   className="form-control mb-3 "
-                  name="Newpassword"
                   placeholder="New Password"
                   required
                   value={AccountData.Newpassword}
@@ -88,18 +78,11 @@ const AccountSetting = () => {
                   className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
                     } toggle-password field-icon`}
                 ></i>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <div className="fxt-transformY-50 fxt-transition-delay-2">
-              <div className="input-with-icon">
+        
                 <input
                   id="Confirmpassword"
                   type={showPassword ? "text" : "password"}
                   className="form-control mb-3"
-                  name="Confirmpassword"
                   placeholder="Confirm Password"
                   required
                   autoComplete="Confirmpassword"
@@ -111,24 +94,18 @@ const AccountSetting = () => {
                   className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
                     } toggle-password field-icon`}
                 ></i>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <div className="fxt-transformY-50 fxt-transition-delay-4">
-              <button type="submit" className="btn " style={{ backgroundColor: "#41b354", color: "white" }}>
+        
+              <button type="submit" className="btn form-control " style={{ backgroundColor: "#41b354", color: "white" }}>
                 {loading ? (
-                  <div class="spinner-border text-light" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div className="spinner-border text-light" role="status">
+                    <span className="visually-hidden ">Loading...</span>
                   </div>
                 ) : (
                   ""
                 )}
                 Reset
               </button>
-            </div>
-          </div>
+        
         </form>
       </div>
     </div>

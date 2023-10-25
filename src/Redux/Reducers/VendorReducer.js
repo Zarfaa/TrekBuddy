@@ -3,10 +3,8 @@ import {
   VENDOR_REGISTER_FAIL,
   VENDOR_LOGIN_SUCCESS,
   VENDOR_LOGIN_FAIL,
-  AUTHENTICATE_SUCCESS,
-  AUTHENTICATE_FAIL,
   LOGOUT_SUCCESS,
-} from "../Actions/index";
+} from "../Actions/ActionTypes";
 
 const Vendor = {
   access: null,
@@ -21,7 +19,6 @@ const AuthReducer = (state = Vendor, action) => {
 
   switch (type) {
     case VENDOR_REGISTER_SUCCESS:
-    case AUTHENTICATE_SUCCESS:
       case VENDOR_LOGIN_SUCCESS:
       localStorage.setItem("access", payload.access_token);
       return {
@@ -32,7 +29,6 @@ const AuthReducer = (state = Vendor, action) => {
     case  VENDOR_REGISTER_FAIL:
     case LOGOUT_SUCCESS:
       case VENDOR_LOGIN_FAIL:
-    case AUTHENTICATE_FAIL:
       localStorage.removeItem("access");
       return {
         ...state,

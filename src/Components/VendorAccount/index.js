@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
-import { logout } from "../../Redux/Actions/auth.action";
+import { logout } from "../../Redux/Actions/VendorActions"
 import AccountSetting from "./AccountSetting";
 import "./style.css"
 function VendorPortal() {

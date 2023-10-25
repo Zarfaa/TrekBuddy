@@ -1,16 +1,16 @@
-import "./Login.css";
+import ".././Login.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { vendorLogin } from "../../Redux/Actions/auth.action";
+import { vendorLogin } from "../../../Redux/Actions/VendorActions";
 
 
 const VendorLogin = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(true);
-  const { isVendorAuthenticated } = useSelector((state) => state.vendorAuth);
+  const { isVendorAuthenticated } = useSelector((state) => state.Vendor);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -86,32 +86,32 @@ const VendorLogin = () => {
 
   return (
     <>
-      <form className="account_Container" onSubmit={handleSubmit}>
+      <form className="Form_Container " onSubmit={handleSubmit}>
 
         <div className="ContentBorder">
           <h2 className="Title">Vendor Login</h2>
       
-          <div>
-            <label htmlFor="email">Email:</label>
+          <div >
             <input
               name="email"
               value={userData.email}
               type="email"
               id="email"
+              className="form-control"
+              placeholder="email"
               required
               onChange={handleInputChange}
             />
           </div>
 
-          <div className="input-with-icon">
-          <label htmlFor="password">Password:</label>
+          <div className="input-with-icon ">
           <input
             id="password"
             type={showPassword ? "text" : "password"}
             className="form-control"
             name="password"
             placeholder="Password"
-            required="required"
+            required
             autoComplete="password"
             value={userData.password}
             onChange={handleInputChange}
@@ -128,8 +128,8 @@ const VendorLogin = () => {
           {errors.password && (
             <p className="error-message">{errors.password}</p>
           )}
-          <div className="button_container">
-            <button type="submit">Submit</button>
+          <div className="button_container ">
+            <button type="submit" className="form-control">Submit</button>
           </div>
         </div>
       </form>

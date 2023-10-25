@@ -2,14 +2,14 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { registerUser} from "../../Redux/Actions/auth.action";
+import { registerUser} from "../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const UserSignup = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(true);
-  const { isUserAuthenticated } = useSelector((state) => state.userAuth);
+  const { isUserAuthenticated } = useSelector((state) => state.User);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -128,6 +128,7 @@ const UserSignup = () => {
             <label htmlFor="firstName">FirstName:</label>
             <input
               name="firstName"
+              className="form-control"
               value={userData.firstName}
               type="text"
               id="firstName"
@@ -141,6 +142,7 @@ const UserSignup = () => {
             <input
               name="lastName"
               value={userData.lastName}
+              className="form-control"
               type="text"
               id="lastName"
               required
@@ -153,6 +155,7 @@ const UserSignup = () => {
             <input
               name="email"
               value={userData.email}
+              className="form-control"
               type="email"
               id="email"
               required
@@ -188,6 +191,7 @@ const UserSignup = () => {
               placeholder="MM/DD/YY"
               id="DateOfBirth"
               onChange={handleInputChange}
+              className="form-control"
               required
             />
           </div>
@@ -200,6 +204,7 @@ const UserSignup = () => {
               value="Male"
               type="radio"
               id="GenderMale"
+              className="form-control"
               onChange={handleInputChange}
               required
             />
@@ -210,6 +215,7 @@ const UserSignup = () => {
               value="Female"
               type="radio"
               id="GenderFemale"
+              className="form-control"
               onChange={handleInputChange}
               required
             />
@@ -222,6 +228,7 @@ const UserSignup = () => {
               name="role"
               value={userData.role}
               required
+              className="form-control"
               onChange={handleInputChange}
             >
               <option value="vendor">Vendor</option>
@@ -237,6 +244,7 @@ const UserSignup = () => {
               type="tel"
               id="phoneNumber"
               pattern="[0-9]*"
+              className="form-control"
               onChange={handleInputChange}
               required
             />

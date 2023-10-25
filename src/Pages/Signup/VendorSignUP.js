@@ -2,13 +2,13 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { registerVendor} from "../../Redux/Actions/auth.action";
+import { registerVendor} from "../../Redux/Actions/VendorActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const VendorSignup = () => {
   const dispatch = useDispatch();
-  const { isVendorAuthenticated } = useSelector((state) => state.vendorAuth);
+  const { isVendorAuthenticated } = useSelector((state) => state.Vendor);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -119,6 +119,7 @@ const VendorSignup = () => {
               value={userData.firstName}
               type="text"
               id="firstName"
+              className="form-control"
               required
               onChange={handleInputChange}
             />
@@ -131,6 +132,7 @@ const VendorSignup = () => {
               value={userData.lastName}
               type="text"
               id="lastName"
+              className="form-control"
               onChange={handleInputChange}
             />
           </div>
@@ -142,6 +144,7 @@ const VendorSignup = () => {
               value={userData.email}
               type="email"
               id="email"
+              className="form-control"
               required
               onChange={handleInputChange}
             />
@@ -155,6 +158,7 @@ const VendorSignup = () => {
               type="password"
               id="password"
               required
+              className="form-control"
               onChange={handleInputChange}
             />
           </div>
@@ -165,6 +169,7 @@ const VendorSignup = () => {
               name="DateOfBirth"
               value={userData.DateOfBirth}
               placeholder="MM/DD/YY"
+              className="form-control"
               id="DateOfBirth"
               onChange={handleInputChange}
             />
@@ -199,6 +204,7 @@ const VendorSignup = () => {
               name="role"
               value={userData.role}
               required
+              className="form-control"
               onChange={handleInputChange}
             >
               <option value="vendor">Vendor</option>
@@ -210,6 +216,7 @@ const VendorSignup = () => {
             <label htmlFor="phoneNumber">Contact Number:</label>
             <input
               name="phoneNumber"
+              className="form-control"
               value={userData.phoneNumber}
               type="tel"
               id="phoneNumber"
@@ -222,6 +229,7 @@ const VendorSignup = () => {
             <label htmlFor="lastName">Company Name:</label>
             <input
               name="companyName"
+              className="form-control"
               value={userData.companyName}
               type="text"
               id="companyName"

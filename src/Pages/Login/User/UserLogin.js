@@ -1,15 +1,15 @@
-import "./Login.css";
+import ".././Login.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { userLogin} from "../../Redux/Actions/auth.action";
+import { userLogin} from "../../../Redux/Actions/UserActions";
 
 const UserLogin = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(true);
-  const { isUserAuthenticated } = useSelector((state) => state.userAuth);
+  const { isUserAuthenticated } = useSelector((state) => state.User);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -56,20 +56,8 @@ const UserLogin = () => {
       const signupData = { ...userData };
       const trimmedPassword = userData.password.trim();
 
-      dispatch(
-        userLogin({ ...signupData, password: trimmedPassword }, (error) => {
-          if (error) {
-            toast.error(error);
-          } else {
-            toast.success(
-              "Welcome to TrekBuddy. Your Registration was successful."
-            );
-          }
-        })
-      );
-    } else {
-      console.log("Form has errors");
-    }
+      dispatch(userLogin({ ...signupData, password: trimmedPassword }));
+    } 
   };
 
   const togglePasswordVisibility = () => {
@@ -93,6 +81,7 @@ const UserLogin = () => {
           <div>
             <label htmlFor="email">Email:</label>
             <input
+             className="form-control"
               name="email"
               value={userData.email}
               type="email"

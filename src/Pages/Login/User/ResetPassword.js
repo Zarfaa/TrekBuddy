@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { reset_password } from "../../Redux/Actions/auth.action";
+import { resetUserpassword } from "../../../Redux/Actions/UserActions";
 import { useDispatch } from "react-redux";
 
 const ResetPassword = () => {
@@ -26,7 +26,7 @@ const ResetPassword = () => {
       return;
     }
 
-    dispatch(reset_password(AccountData, setError));
+    dispatch(resetUserpassword (AccountData, setError));
   };
 
 

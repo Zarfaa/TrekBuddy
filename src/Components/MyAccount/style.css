@@ -8,9 +8,13 @@
   
   .field-icon {
     position: absolute;
-    right: 10px;  /* Adjust the right value as needed */
-    top: 50%;    /* Center the icon vertically */
-    transform: translateY(-50%);
+    right: 20%; 
+    top: 52%;    
+    transform: translateY(-40%);
     cursor: pointer;
+  }
+
+  .Profile_Data{
+    margin: 5% 15%;
   }
   
