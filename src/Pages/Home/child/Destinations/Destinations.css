@@ -1,18 +1,9 @@
-.Destinations_container{
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    background-color: white;
-    color:black;
-    margin: 2% 5%;
-    flex-wrap: wrap;
-}
 .section_title{
-    margin-top: 5%;
     color:black;
     text-align: center;
     font-size: 50px;
     font-weight: 500;
+    margin-top: 5%;
 }
 
 .section_subtitle{
@@ -21,11 +12,18 @@
     color: rgb(65, 179, 84);
     margin-left: 38%;
 }
+
+.Destinations_container{
+    display: flex;
+    margin: 1% 10% 10% 10%;
+    flex-wrap: wrap;
+}
+
 .flex-item img {
     border-radius: 15px;
     border: none;
-    width: 380px;
-    height: 250px;
+    width: 25vw;
+    height: 20vw;
     filter: brightness(50%)
 }
 
@@ -55,35 +53,4 @@
     }
   }
 
-  @media screen and (min-width: 1440px){
-    .section_title{
-        margin-top: 2%;
-        color:black;
-        text-align: center;
-        font-size: 100px;
-        font-weight: 500;
-    }
-    
-    .section_subtitle{
-        font-family: 'Seaweed Script', cursive;
-        font-size: 50px;
-        color: rgb(65, 179, 84);
-        margin-left: 38%;
-    }
-
-    .flex-item img {
-        border-radius: 15px;
-        border: none;
-        width: 750px;
-        height: 400px;
-        filter: brightness(50%)
-    }
-    
-    .caption {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 40px;
-      }
-  }
+ 

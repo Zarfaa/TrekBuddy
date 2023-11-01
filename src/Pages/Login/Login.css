@@ -13,7 +13,7 @@
   }
 
   .Forget_password{
-   margin-left: 25%;
+   text-align: right;
    margin-bottom: 5%;
    background-color: white;
     color: rgb(65, 179, 84);
@@ -67,7 +67,7 @@
   
   .field-icon {
     position: absolute;
-    right: 10px; 
+    right: 0; 
     top: 50%;   
     transform: translateY(-50%);
     cursor: pointer;

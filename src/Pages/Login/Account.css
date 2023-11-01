@@ -1,0 +1,55 @@
+.Account_container {
+    border: 2px solid rgb(109, 106, 106);
+    border-radius: 25px;
+    margin: 7% 20%;
+    padding: 3% 5% 5% 5%;
+    box-shadow: 0px 4px 8px rgba(12, 12, 12, 0.2);
+}
+
+.Account_container h3 {
+    font-family: 'Seaweed Script', cursive;
+    color: rgb(65, 179, 84);
+    font-size: 2vw;
+    text-align: center;
+    margin-bottom: 7%;
+}
+.Account_container h4{
+    font-size: 2vw;
+    text-align: center;
+}
+
+.Login-text{
+    color: rgb(65, 179, 84);
+  }
+
+  .Account_container p{
+    text-align: center;
+}
+
+.signup-icon{
+    margin-right: 10px;
+}
+.btn-color {
+    color: white;
+    font-weight: 500;
+    background-color: #41b354;
+    border-radius: 25px;
+    padding: 0.7vw;
+}
+
+.btn-color:hover {
+    color: white;
+    top: -5vw;
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(12, 12, 12, 0.2);
+    font-weight: 500;
+    background-color: #41b354;
+    border: solid white 2px;
+}
+
+.Flex {
+    display: flex;
+    gap: 5vw;
+    justify-content: center;
+    margin: 5%;
+}

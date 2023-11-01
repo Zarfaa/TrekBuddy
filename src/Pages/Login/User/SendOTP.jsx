@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { sendUserOTP } from "../../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -7,12 +7,20 @@ import { toast } from "react-toastify";
 const SendOTP = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
-  const { isSuccess} = useSelector((state) => state.User);
+  const [loadingStates, setLoadingStates] = useState(false);
+  const { isSuccess , loading} = useSelector((state) => state.User);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(sendUserOTP(email));
+    setLoadingStates(true)
+    dispatch(sendUserOTP(email, setLoadingStates));
+    console.log(email)
   };
+
+
+  useEffect(() => {
+    setLoadingStates(loading);
+  }, [loading]);
 
   if ( isSuccess) {
     toast("OTP sent! Check Your Email");
@@ -31,11 +39,19 @@ const SendOTP = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <span>We’ll send a verification code to this email if it matches an existing account.</span>
         </div>
 
         <button type="submit" className="btn mt-3 form-control" style={{ backgroundColor: "#41b354", color: "white" }}>
+        {loadingStates ? (
+                 <div class="spinner-border text-light" role="status">
+                 <span class="visually-hidden">Loading...</span>
+               </div>
+                ) : (
+                  ""
+                )}
           Send
         </button>
       </form>

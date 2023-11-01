@@ -11,18 +11,32 @@
   
   #searchbar{
     background-color: rgb(65, 179, 84);
+    box-shadow: 0px 4px 8px  rgb(75, 77, 75);
     padding: 5%;
-    margin: 5%;
+    margin: 10% 5% ;
+  }
+
+  #searchbar:hover{
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px  rgb(168, 190, 168);
+    top: -2vw;
   }
 
   #searchbar h1 ,  #searchbar p{
     margin-left: 15%;
   }
-  #searchbar button{
-    border: solid rgb(65, 179, 84) 2px;
-    padding: 5px 15px;
+
+  .Book-us{
+    border: solid rgb(203, 225, 207) 2px;
+    padding:  1% 3% ;
     border-radius: 25px;
     margin-left: 15%;
+  }
+
+  .Book-us:hover{
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px  rgb(75, 77, 75);
+    top: -2vw;
   }
 
   form div {
@@ -57,6 +71,11 @@
     font-weight: 500;
   }
 
+  .search button:hover{
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px  rgb(75, 77, 75);
+    top: -2vw;
+  }
   .search {
     flex: 0.5
   }
@@ -101,54 +120,4 @@
       margin-top: 5px;
     }
   
-  }
-
-  @media  screen and (min-width: 1440px){
-    #searchbar h1 {
-      font-size: 50px;
-    }
-     #searchbar p{
-      font-size: 25px;
-    }
-
-    #searchbar button{
-      border: solid rgb(65, 179, 84) 2px;
-      padding: 1rem 3rem;
-      border-radius: 30px;
-      margin-left: 15%;
-      font-size: 15px;
-    }
-    .search_container {
-      display: flex;
-      flex-wrap: wrap;
-      background-color: white;
-      border: solid white 2px;
-      border-radius: 15rem;
-      margin: 5% 15%;
-      padding: 3rem 3rem;
-      gap: 3rem;
-    }
-
-    #input_container {
-      font-size: 20px;
-      color: gray;
-    }
-  
-    #label{
-      font-size: 30px;
-      font-weight: 500;
-    }
-  
-    .search button{
-      padding: 10% 40%;
-      background-color:rgb(65, 179, 84) ;
-      border-radius: 55px;
-      color: white;
-      font-size: 40px
-    }
-   
-    .search {
-      flex: 0.7
-    }
-    
   }

@@ -17,4 +17,15 @@
   .Profile_Data{
     margin: 5% 15%;
   }
+
+  .button{
+    background-color:  rgb(65, 179, 84);
+    color: white;
+    border: none;
+    border-radius: 25px;
+  }
+
+  .field-color{
+    background-color: rgb(222, 224, 224);
+  }
   

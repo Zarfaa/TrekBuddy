@@ -1,6 +1,6 @@
 .nav_container {
     background-color: #41b354;
-    padding: 25px;
+    padding: 1.7vw;
     justify-content: space-evenly;
     display :flex;
     color:white;
@@ -10,13 +10,34 @@
   .nav_logo{
     font-family: 'Seaweed Script', cursive;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.5vw;
     color: white;
+  }
+
+  .nav_btn{
+    background-color: white;
+    color: #41b354;
+    border-radius: 25px;
+    padding: 10% 20%;
+  }
+
+  .nav_btn:hover{
+    background-color:#41b354;
+    color: white;
+    border-radius: 25px;
+    padding: 10% 20%;
+    border: 2px solid white;
+    box-shadow: 0px 4px 4px rgba(12, 12, 12, 0.2);
+  }
+
+  .nav_btns{
+    display: flex;
+    gap: 3vw;
   }
 
   .nav_items{
     display: flex;
-    gap: 25px;
+    gap: 3vw;
   }
 
   #text{
@@ -24,59 +45,4 @@
   }
 
 
-  .dropdown {
-    float: left;
-    position: relative; 
-    z-index: 2;
-  }
-  
-  .dropdown .dropbtn {
-    font-size: 16px;  
-    border: none;
-    outline: none;
-    color: white;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-
-  @media only screen and (min-width: 1440px){
-    #text{
-      color: white;
-      font-size: 25px;
-    }
-  
-    .nav_logo{
-      font-family: 'Seaweed Script', cursive;
-      font-weight: 700;
-      font-size: 30px;
-      color: white;
-    }
-  }
+ 

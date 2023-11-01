@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 let NavBar = () => {
-  const {isUserAuthenticated} = useSelector((state) => state.User);
-  const {isVendorAuthenticated} = useSelector((state) => state.Vendor);
+  const { isUserAuthenticated } = useSelector((state) => state.User);
+  const { isVendorAuthenticated } = useSelector((state) => state.Vendor);
   return (
     <nav>
       <div className="nav_container">
@@ -26,13 +26,14 @@ let NavBar = () => {
         {isUserAuthenticated ? (
           <Link id="text" to="/myaccount">My Account</Link>
         ) : (
-            <div className="dropdown">
-              <button className="dropbtn" id="text"><i className="fa fa-fw fa-user"></i>Signup </button>
-              <div className="dropdown-content">
-                <Link to="/UserSignUP">Signup as User</Link>
-                <Link to="/VendorSignUP">Signup as Vendor</Link>
-              </div>
+          <div className="nav_btns">
+            <div>
+              <Link id="text" to="/login">Login</Link>
             </div>
+            <div>
+              <Link id="text" to="/register"><button className="nav_btn">Signup</button></Link>
+            </div>
+          </div>
         )}
 
         {isVendorAuthenticated && (

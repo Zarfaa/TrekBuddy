@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 import { logout } from "../../Redux/Actions/UserActions";
-import AccountSetting from "./AccountSetting";
+import AccountSetting from "./EditProfile";
 import EditProfile from "./AccountInfo"
 import "./style.css"
 function MyAccount() {
@@ -33,7 +33,7 @@ function MyAccount() {
           <Nav.Item className="my-2 mx-0">
             <Nav.Link className="p-3" eventKey="second" style={{ backgroundColor: "#41b354", color: "white" }}>
               {" "}
-              <i class="fa-solid fa-percent"></i> Edit Profile
+              <i class="fa-solid fa-user-pen"></i> Edit Profile
             </Nav.Link>
           </Nav.Item>
 

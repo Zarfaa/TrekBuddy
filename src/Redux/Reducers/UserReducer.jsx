@@ -13,7 +13,9 @@ import {
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAIL,
   RESET_USER_PASSWORD_SUCCESS,
-  RESET_USER_PASSWORD_FAIL
+  RESET_USER_PASSWORD_FAIL,
+  USER_PROFILE_UPDATE_SUCCESS,
+  USER_PROFILE_UPDATE_FAIL
 } from "../Actions/ActionTypes";
 
 const initialState = {
@@ -21,17 +23,18 @@ const initialState = {
   loading: false,
   error: null,
   isUserAuthenticated: false,
-  isSuccess: false
+  isSuccess: false,
+  isVerified: false,
+  passwordSuccess: false
 };
 
 const userAccount = (state = initialState, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_REGISTER_SUCCESS:
     case USER_PROFILE_SUCCESS:
+    case USER_PROFILE_UPDATE_SUCCESS:
     case USER_LOGIN_SUCCESS:
-    case RESET_USER_PASSWORD_SUCCESS:
       localStorage.setItem("access", payload.access_token);
       return {
         ...state,
@@ -39,22 +42,28 @@ const userAccount = (state = initialState, action) => {
         data: payload,
       };
 
+    case RESET_USER_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        data: payload,
+        passwordSuccess: true
+      };
+
     case USER_REGISTER_FAIL:
     case RESET_USER_PASSWORD_FAIL:
+    case USER_PROFILE_UPDATE_FAIL:
     case USER_LOGIN_FAIL:
     case LOGOUT_SUCCESS:
     case USER_PROFILE_FAIL:
       localStorage.removeItem("access");
       return {
         ...state,
-        isUserAuthenticated: false,
         data: null,
         error: payload,
       };
 
 
     case SEND_USER_OTP_SUCCESS:
-    case VERIFY_USER_OTP_SUCCESS:
     case RESEND_USER_OTP_SUCCESS:
       localStorage.setItem("access", payload.access_token);
       return {
@@ -63,16 +72,33 @@ const userAccount = (state = initialState, action) => {
         access: payload.access_token,
         data: payload
       };
+    case VERIFY_USER_OTP_SUCCESS:
+      localStorage.setItem("access", payload.access_token);
+      return {
+        ...state,
+        isVerified: true,
+        access: payload.access_token,
+        data: payload
+      };
+
 
     case RESEND_USER_OTP_FAIL:
     case SEND_USER_OTP_FAIL:
-    case VERIFY_USER_OTP_FAIL:
       localStorage.removeItem("access");
       return {
         ...state,
         data: null,
         isSuccess: false
       };
+
+    case VERIFY_USER_OTP_FAIL:
+      localStorage.removeItem("access");
+      return {
+        ...state,
+        data: null,
+        isVerified: false
+      };
+
     default:
       return state;
   }
