@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 import { vendorLogin } from "../../../Redux/Actions/VendorActions";
 
 const VendorLogin = () => {
@@ -33,7 +32,7 @@ const VendorLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const trimmedPassword = VendorData.password.trim();
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=*]).{8,}$/;
     if (!VendorData.email.includes("@")) {
       setError({
         ...error,
@@ -49,7 +48,7 @@ const VendorLogin = () => {
       return
     }
     setLoadingStates(true)
-    dispatch(vendorLogin({ ...VendorData, password: trimmedPassword}, setLoadingStates , setError ));
+    dispatch(vendorLogin({ ...VendorData, password: trimmedPassword}, setLoadingStates));
   };
 
   const togglePasswordVisibility = () => {
@@ -58,7 +57,6 @@ const VendorLogin = () => {
 
 
   if (isVendorAuthenticated) {
-    toast("You have been loggedIn successfully.");
     return <Navigate replace to="/" />;
   }
 
@@ -119,6 +117,7 @@ const VendorLogin = () => {
               )}
               Submit</button>
           </div>
+          
         </div>
       </form>
     </>

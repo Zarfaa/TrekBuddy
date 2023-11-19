@@ -22,11 +22,8 @@ let NavBar = () => {
             <Link id="text" to="/destinations">Destinations</Link>
           </div>
         </div>
-
-        {isUserAuthenticated ? (
-          <Link id="text" to="/myaccount">My Account</Link>
-        ) : (
-          <div className="nav_btns">
+        {!isUserAuthenticated &&  !isVendorAuthenticated &&(
+        <div className="nav_btns">
             <div>
               <Link id="text" to="/login">Login</Link>
             </div>
@@ -36,11 +33,13 @@ let NavBar = () => {
           </div>
         )}
 
+        {isUserAuthenticated && (
+          <Link id="text" to="/myaccount">My Account</Link>
+    
+        )}
+
         {isVendorAuthenticated && (
-          <>
-            <div><Link id="text" to="/vendorportal">Vendor Dashboard</Link></div>
-            <div><Link id="text" to="/listproperty">List Property</Link></div>
-          </>
+          <div><Link id="text" to="/vendorportal">Vendor Dashboard</Link></div>
         )}
 
       </div>

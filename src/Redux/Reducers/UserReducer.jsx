@@ -32,15 +32,20 @@ const userAccount = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case USER_REGISTER_SUCCESS:
-    case USER_PROFILE_SUCCESS:
     case USER_PROFILE_UPDATE_SUCCESS:
     case USER_LOGIN_SUCCESS:
-      localStorage.setItem("access", payload.access_token);
       return {
         ...state,
         isUserAuthenticated: true,
         data: payload,
       };
+
+      case USER_PROFILE_SUCCESS:
+          return {
+            ...state,
+            isUserAuthenticated: true,
+            data: payload.data,
+          };
 
     case RESET_USER_PASSWORD_SUCCESS:
       return {
@@ -53,19 +58,24 @@ const userAccount = (state = initialState, action) => {
     case RESET_USER_PASSWORD_FAIL:
     case USER_PROFILE_UPDATE_FAIL:
     case USER_LOGIN_FAIL:
-    case LOGOUT_SUCCESS:
     case USER_PROFILE_FAIL:
-      localStorage.removeItem("access");
       return {
         ...state,
         data: null,
         error: payload,
       };
 
+      case LOGOUT_SUCCESS:
+          return {
+            ...state,
+            data: null,
+            error: payload,
+            isUserAuthenticated: false,
+          };
+
 
     case SEND_USER_OTP_SUCCESS:
     case RESEND_USER_OTP_SUCCESS:
-      localStorage.setItem("access", payload.access_token);
       return {
         ...state,
         isSuccess: true,
@@ -73,7 +83,6 @@ const userAccount = (state = initialState, action) => {
         data: payload
       };
     case VERIFY_USER_OTP_SUCCESS:
-      localStorage.setItem("access", payload.access_token);
       return {
         ...state,
         isVerified: true,
@@ -84,7 +93,6 @@ const userAccount = (state = initialState, action) => {
 
     case RESEND_USER_OTP_FAIL:
     case SEND_USER_OTP_FAIL:
-      localStorage.removeItem("access");
       return {
         ...state,
         data: null,
@@ -92,7 +100,6 @@ const userAccount = (state = initialState, action) => {
       };
 
     case VERIFY_USER_OTP_FAIL:
-      localStorage.removeItem("access");
       return {
         ...state,
         data: null,

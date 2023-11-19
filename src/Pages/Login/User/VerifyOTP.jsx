@@ -51,7 +51,7 @@ const ConfirmOTP = () => {
                 ) : (
                   ""
                 )}
-          Verify
+          Verify OTP
         </button>
       </form>
     </div>

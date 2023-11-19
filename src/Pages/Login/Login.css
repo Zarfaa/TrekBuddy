@@ -72,4 +72,11 @@
     transform: translateY(-50%);
     cursor: pointer;
   }
+
+  .resend-OTP{
+    background-color:  rgb(65, 179, 84);
+    color: white;
+    padding: 1%;
+    border-radius: 5px;
+  }
   

@@ -14,6 +14,7 @@ const SendOTP = () => {
     e.preventDefault();
     setLoadingStates(true)
     dispatch(sendVendorOTP(email, setLoadingStates));
+    dispatch(resendVendorOTP(email, setLoadingStates));
     console.log(email)
   };
 
@@ -54,6 +55,7 @@ const SendOTP = () => {
                 )}
           Send
         </button>
+        <div className='mt-5'>Haven't Received an OTP? <button type="submit" className='resend-OTP' > Resend Code</button></div>
       </form>
     </div>
   );

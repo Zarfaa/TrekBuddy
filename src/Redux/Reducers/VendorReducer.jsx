@@ -34,15 +34,21 @@ const AuthReducer = (state = Vendor, action) => {
       };
 
     case VENDOR_REGISTER_FAIL:
-    case LOGOUT_SUCCESS:
     case VENDOR_LOGIN_FAIL:
-      localStorage.removeItem("access");
       return {
         ...state,
         isVendorAuthenticated: false,
         vendor: null,
-        access: null,
       };
+
+      case LOGOUT_SUCCESS:
+        return {
+          ...state,
+          data: null,
+          error: payload,
+          isVendorAuthenticated: false,
+        };
+
 
     case SEND_VENDOR_OTP_SUCCESS:
     case RESEND_VENDOR_OTP_SUCCESS:

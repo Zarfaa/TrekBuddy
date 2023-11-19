@@ -1,40 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile, getUserProfile } from '../../Redux/Actions/UserActions';
+import { getVendorProfile , updateVendorProfile} from '../../Redux/Actions/VendorActions';
 import "./style.css"
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const [loadingStates, setLoadingStates] = useState(false);
-  const { loading, data } = useSelector((state) => state.User);
+  const { loading, data } = useSelector((state) => state.Vendor);
 
-  const [userData, setUserData] = useState({
+  const [vendorData, setvendorData] = useState({
     userName: data?.name || '',
     DateOfBirth: data?.DateOfBirth || '',
     contactNumber: data?.phoneNumber || '',
+    companyName: data?.companyName || ''
   });
-  
-  useEffect(() => {
-    const id = localStorage.getItem('loginId');
-    dispatch(getUserProfile(id)); 
-  }, [dispatch]);
+
+  const id = localStorage.getItem('VendorId');
+  console.log("VendorId", id);
 
   useEffect(() => {
     setLoadingStates(loading);
-  }, [loading]);
+    if (id) {
+      dispatch(getVendorProfile(id));
+    }
+  }, [loading, dispatch, id]);
+  
+  useEffect(() => {
+    setvendorData({
+      userName: data?.name || '',
+      DateOfBirth: data?.DateOfBirth || '',
+      contactNumber: data?.phoneNumber || '',
+      companyName: data?.companyName || ''
+    });
+  }, [data]);
   
 
   const handleInputChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setvendorData({ ...vendorData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoadingStates(true);
-    const id = localStorage.getItem('loginId');
-    dispatch(updateUserProfile(id, { ...userData }, setLoadingStates));
+    if (id) {
+      dispatch(updateVendorProfile(id, { ...vendorData }, setLoadingStates));
+    }
   };
-  
 
   return (
     <div className="Profile_Data">
@@ -43,7 +54,7 @@ const EditProfile = () => {
         <input
           className="form-control mb-3 field-color"
           name="userName"
-          value={userData.userName}
+          value={vendorData.userName}
           type="text"
           id="userName"
           required
@@ -52,7 +63,7 @@ const EditProfile = () => {
         <input
           className="form-control mb-3 field-color"
           name="DateOfBirth"
-          value={userData.DateOfBirth}
+          value={vendorData.DateOfBirth}
           type="text"
           id="DateOfBirth"
           required
@@ -61,13 +72,21 @@ const EditProfile = () => {
         <input
           className="form-control mb-3 field-color"
           name="contactNumber"
-          value={userData.contactNumber}
+          value={vendorData.contactNumber}
           type="text"
           id="contactNumber"
           required
           onChange={handleInputChange}
         />
-
+          <input
+          className="form-control mb-3 field-color"
+          name="companyName"
+          value={vendorData.companyName}
+          type="text"
+          id="companyName"
+          required
+          onChange={handleInputChange}
+        />
         <button type="submit" className='button'>
           {loadingStates ? (
             <div className="spinner-border text-light" role="status">

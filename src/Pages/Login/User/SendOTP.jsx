@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { sendUserOTP } from "../../../Redux/Actions/UserActions";
+import { sendUserOTP, resendUserOTP  } from "../../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -14,6 +14,7 @@ const SendOTP = () => {
     e.preventDefault();
     setLoadingStates(true)
     dispatch(sendUserOTP(email, setLoadingStates));
+    dispatch(resendUserOTP(email, setLoadingStates));
     console.log(email)
   };
 
@@ -54,6 +55,7 @@ const SendOTP = () => {
                 )}
           Send
         </button>
+        <div className='mt-5'>Haven't Received an OTP? <button type="submit" className='resend-OTP' > Resend Code</button></div>
       </form>
     </div>
   );

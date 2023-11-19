@@ -37,7 +37,7 @@ let Destinations = () => {
   return (
     <>
       <h2 className="section_title">Top Destinations</h2>
-      <span className="section_subtitle">Explore the beauty of North Pakistan</span>
+      <h4 className="section_subtitle">Explore the beauty of North Pakistan</h4>
 
       {loading ? (
         <div className="loader">Loading...</div>

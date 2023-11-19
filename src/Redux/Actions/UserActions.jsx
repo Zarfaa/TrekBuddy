@@ -19,7 +19,6 @@ import {
   USER_PROFILE_UPDATE_FAIL
 } from "./ActionTypes";
 import { toast } from "react-toastify";
-import { getTokenIncludedConfig } from "./common"
 
 
 // USER SIGNUP ACTION
@@ -43,7 +42,7 @@ export const registerUser = (data, setError, setLoadingStates) => async (dispatc
 };
 
 
-export const userLogin = (data, setLoadingStates ) => async (dispatch) => {
+export const userLogin = (data, setLoadingStates) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
     const res = await axios.post("user/login", body);
@@ -51,8 +50,10 @@ export const userLogin = (data, setLoadingStates ) => async (dispatch) => {
       type: USER_LOGIN_SUCCESS,
       payload: res.data,
     });
-    setLoadingStates(false)
-    toast.success(res.data.message)
+    setLoadingStates(false);
+    toast.success(res.data.message);
+    localStorage.setItem('loginId', res.data.user._id);
+    console.log("loginId stored", res.data.user._id)
   } catch (error) {
     setLoadingStates(false)
     toast.error(error.response.data.message);
@@ -66,13 +67,13 @@ export const userLogin = (data, setLoadingStates ) => async (dispatch) => {
 
 export const getUserProfile = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`user/profile/${id}`, getTokenIncludedConfig());
+    const res = await axios.get(`user/profile/${id}`);
     dispatch({
       type: USER_PROFILE_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
-    toast.error(error.res.data.message)
+    toast.error(error.response.data.message)
     dispatch({
       type: USER_PROFILE_FAIL,
     });
@@ -80,20 +81,24 @@ export const getUserProfile = (id) => async (dispatch) => {
 };
 
 
-export const updateUserProfile = (id) => async (dispatch) => {
+export const updateUserProfile = (id, data, setLoadingStates) => async (dispatch) => {
+  const body = JSON.stringify(data);
   try {
-    const res = await axios.put( `user/update-info/${id}`);
+    const res = await axios.put(`user/update-info/${id}`, body);
     dispatch({
       type: USER_PROFILE_UPDATE_SUCCESS,
       payload: res.data,
     });
+    setLoadingStates(false);
   } catch (error) {
+    setLoadingStates(false);
     dispatch({
       type: USER_PROFILE_UPDATE_FAIL,
       error: error.message,
     });
   }
 };
+
 
 
 // FORGOT PASSWORD ACTION
@@ -132,6 +137,24 @@ export const sendUserOTP = (email, setLoadingStates) => async (dispatch) => {
   }
 };
 
+
+export const resendUserOTP = (data, setLoadingStates) => async (dispatch) => {
+  const body = JSON.stringify({ data });
+  try {
+    const res = await axios.post("user/resend-otp", body);
+    dispatch({
+      type: RESEND_USER_OTP_SUCCESS,
+      payload: res.data,
+    });
+    setLoadingStates(false)
+  } catch (error) {
+    setLoadingStates(false)
+    dispatch({
+      type: RESEND_USER_OTP_FAIL,
+    });
+  }
+};
+
 export const verifyUserOTP = (otp, userId, setLoadingStates) => async (dispatch) => {
   const body = JSON.stringify({ otp, userId });
   try {
@@ -150,21 +173,6 @@ export const verifyUserOTP = (otp, userId, setLoadingStates) => async (dispatch)
 };
 
 
-
-export const resendUserOTP = (data) => async (dispatch) => {
-  const body = JSON.stringify({ data });
-  try {
-    const res = await axios.post("/resend-otp", body);
-    dispatch({
-      type: RESEND_USER_OTP_SUCCESS,
-      payload: res.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: RESEND_USER_OTP_FAIL,
-    });
-  }
-};
 
 // LOGOUT ACTION
 export const logout = (setRedirect) => (dispatch) => {

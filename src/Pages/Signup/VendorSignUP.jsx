@@ -1,14 +1,14 @@
 import "./Signup.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { useState , useEffect} from "react";
 import { registerVendor} from "../../Redux/Actions/VendorActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const VendorSignup = () => {
   const dispatch = useDispatch();
-  const { isVendorAuthenticated } = useSelector((state) => state.Vendor);
+  const { isVendorAuthenticated , loading} = useSelector((state) => state.Vendor);
+  const [loadingStates, setLoadingStates] = useState(false);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -27,6 +27,10 @@ const VendorSignup = () => {
     DateOfBirth: "",
     phoneNumber: "",
   });
+
+  useEffect(() => {
+    setLoadingStates(loading);
+  }, [loading]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -79,22 +83,10 @@ const VendorSignup = () => {
     if (validateForm()) {
       const signupData = { ...userData };
       const trimmedPassword = userData.password.trim();
-
-      dispatch(
-        registerVendor({ ...signupData, password: trimmedPassword }, (error) => {
-          if (error) {
-            toast.error(error);
-          } else {
-            toast.success(
-              "Welcome to TrekBuddy. Your Registration was successful."
-            );
-          }
-        })
-      );
-    } else {
-      console.log("Form has errors");
-    }
-  };
+      setLoadingStates(true)
+      dispatch(registerVendor({ ...signupData, password: trimmedPassword }, setLoadingStates))
+  }
+}
 
   if (isVendorAuthenticated) {
     return <Navigate replace to="/" />;
@@ -212,6 +204,7 @@ const VendorSignup = () => {
             </select>
           </div>
 
+
           <div>
             <label htmlFor="phoneNumber">Contact Number:</label>
             <input
@@ -248,6 +241,13 @@ const VendorSignup = () => {
           )}
 
           <div className="button_container">
+          {loadingStates ? (
+                <div class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              ) : (
+                ""
+              )}
             <button type="submit">Submit</button>
           </div>
         </div>
@@ -256,4 +256,4 @@ const VendorSignup = () => {
   );
 };
 
-export default VendorSignup;
+export default VendorSignup

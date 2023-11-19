@@ -18,7 +18,7 @@
     background-color: white;
     color: #41b354;
     border-radius: 25px;
-    padding: 10% 20%;
+    padding: 10% 15%;
   }
 
   .nav_btn:hover{
@@ -44,5 +44,36 @@
     color: white;
   }
 
+
+@media screen and (max-width: 500px){
+  .nav_btns{
+    display: flex;
+    gap: 3vw;
+    font-size: 3vw;
+  }
+
+  .nav_items{
+    display: flex;
+    gap: 3vw;
+    font-size: 3vw;
+  }
+
+  .nav_btn{
+    background-color: white;
+    color: #41b354;
+    border-radius: 25px;
+    padding: 1vw 3vw;
+    font-size: 3vw;
+  }
+
+  .nav_logo{
+    font-family: 'Seaweed Script', cursive;
+    font-weight: 700;
+    font-size: 1.5vw;
+    color: white;
+    font-size: 3vw;
+  }
+
+}
 
  

@@ -18,12 +18,12 @@ import {
   VENDOR_PROFILE_UPDATE_SUCCESS,
   VENDOR_PROFILE_UPDATE_FAIL
 } from "./ActionTypes";
-
 import { getTokenIncludedConfig } from "./common"
+import { toast } from "react-toastify";
 
 
 // VENDOR SIGNUP ACTION
-export const registerVendor = (data, setError, setLoadingStates) => async (dispatch) => {
+export const registerVendor = (data,  setLoadingStates) => async (dispatch) => {
   const body = JSON.stringify(data);
   try {
     const res = await axios.post("vendor/signup", body);
@@ -32,8 +32,9 @@ export const registerVendor = (data, setError, setLoadingStates) => async (dispa
       payload: res.data,
     });
     setLoadingStates(false);
+    toast.success(res.data.message)
   } catch (error) {
-    setError(error.response.data);
+    toast.error(error.response.data.message);
     setLoadingStates(false);
     dispatch({
       type: VENDOR_REGISTER_FAIL,
@@ -51,8 +52,11 @@ export const vendorLogin = (data, setLoadingStates) => async (dispatch) => {
       type: VENDOR_LOGIN_SUCCESS,
       payload: res.data,
     });
+    localStorage.setItem('VendorId' , res.data.user._id);
     setLoadingStates(false)
+    toast.success(res.data.message)
   } catch (error) {
+    toast.error(error.response.data.message);
     setLoadingStates(false)
     dispatch({
       type: VENDOR_LOGIN_FAIL,
@@ -69,7 +73,9 @@ export const getVendorProfile = (id) => async (dispatch) => {
       type: VENDOR_PROFILE_SUCCESS,
       payload: res.data,
     });
+    toast.success(res.data.message)
   } catch (error) {
+    toast.error(error.res.data.message)
     dispatch({
       type: VENDOR_PROFILE_FAIL,
     });
@@ -77,20 +83,24 @@ export const getVendorProfile = (id) => async (dispatch) => {
 };
 
 
-export const updateVendorProfile = (id) => async (dispatch) => {
+export const updateVendorProfile = (id, data , setLoadingStates) => async (dispatch) => {
+  const body = JSON.stringify(data);
   try {
-    const res = await axios.put( `vendor/update-info/${id}`, getTokenIncludedConfig());
+    const res = await axios.put( `vendor/update-info/${id}`, body);
     dispatch({
       type: VENDOR_PROFILE_UPDATE_SUCCESS,
       payload: res.data,
     });
+    setLoadingStates(false);
   } catch (error) {
+    setLoadingStates(false);
     dispatch({
       type: VENDOR_PROFILE_UPDATE_FAIL,
       error: error.message,
     });
   }
 };
+
 
 
 // FORGOT PASSWORD ACTION
@@ -129,6 +139,23 @@ export const sendVendorOTP = (email, setLoadingStates) => async (dispatch) => {
   }
 };
 
+export const resendVendorOTP = (data, setLoadingStates) => async (dispatch) => {
+  const body = JSON.stringify({ data });
+  try {
+    const res = await axios.post("vendor/resend-otp", body);
+    dispatch({
+      type: RESEND_VENDOR_OTP_SUCCESS,
+      payload: res.data,
+    });
+    setLoadingStates(false)
+  } catch (error) {
+    setLoadingStates(false)
+    dispatch({
+      type: RESEND_VENDOR_OTP_FAIL,
+    });
+  }
+};
+
 export const verifyVendorOTP = (otp, userId, setLoadingStates) => async (dispatch) => {
   const body = JSON.stringify({ otp, userId });
   try {
@@ -148,20 +175,6 @@ export const verifyVendorOTP = (otp, userId, setLoadingStates) => async (dispatc
 
 
 
-export const resendVENDOROTP = (data) => async (dispatch) => {
-  const body = JSON.stringify({ data });
-  try {
-    const res = await axios.post("vendor/resend-otp", body);
-    dispatch({
-      type: RESEND_VENDOR_OTP_SUCCESS,
-      payload: res.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: RESEND_VENDOR_OTP_FAIL,
-    });
-  }
-};
 
 // LOGOUT ACTION
 export const logout = (setRedirect) => (dispatch) => {
