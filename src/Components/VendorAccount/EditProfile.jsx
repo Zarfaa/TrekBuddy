@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVendorProfile , updateVendorProfile} from '../../Redux/Actions/VendorActions';
+import { getVendorProfile, updateVendorProfile } from '../../Redux/Actions/VendorActions';
 import "./style.css"
 
 const EditProfile = () => {
@@ -9,10 +9,10 @@ const EditProfile = () => {
   const { loading, data } = useSelector((state) => state.Vendor);
 
   const [vendorData, setvendorData] = useState({
-    userName: data?.name || '',
-    DateOfBirth: data?.DateOfBirth || '',
-    contactNumber: data?.phoneNumber || '',
-    companyName: data?.companyName || ''
+    userName: '',
+    DateOfBirth: '',
+    contactNumber: '',
+    companyName: ''
   });
 
   const id = localStorage.getItem('VendorId');
@@ -20,20 +20,23 @@ const EditProfile = () => {
 
   useEffect(() => {
     setLoadingStates(loading);
+  }, [loading]);
+
+  useEffect(() => {
     if (id) {
       dispatch(getVendorProfile(id));
     }
-  }, [loading, dispatch, id]);
-  
+  }, [id, dispatch]);
+
   useEffect(() => {
     setvendorData({
-      userName: data?.name || '',
-      DateOfBirth: data?.DateOfBirth || '',
-      contactNumber: data?.phoneNumber || '',
-      companyName: data?.companyName || ''
+      userName: data.name,
+      DateOfBirth: data.DateOfBirth,
+      contactNumber: data.phoneNumber,
+      companyName: data.hotelName
     });
   }, [data]);
-  
+
 
   const handleInputChange = (e) => {
     setvendorData({ ...vendorData, [e.target.name]: e.target.value });
@@ -42,9 +45,7 @@ const EditProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoadingStates(true);
-    if (id) {
-      dispatch(updateVendorProfile(id, { ...vendorData }, setLoadingStates));
-    }
+    dispatch(updateVendorProfile(id, { ...vendorData }, setLoadingStates));
   };
 
   return (
@@ -78,7 +79,8 @@ const EditProfile = () => {
           required
           onChange={handleInputChange}
         />
-          <input
+        <h4>Property Info</h4>
+        <input
           className="form-control mb-3 field-color"
           name="companyName"
           value={vendorData.companyName}

@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 import { logout } from "../../Redux/Actions/UserActions";
 import EditProfile from "./EditProfile";
-
+import ViewProfile from "./ViewProfile"
 import "./style.css"
 function MyAccount() {
   const dispatch = useDispatch();
@@ -24,8 +24,15 @@ function MyAccount() {
       <Col sm={12} md={2} className="border ">
         <Nav variant="pills" className="flex-column mt-3 pb-5">
 
-          <Nav.Item className="my-2 mx-0">
+        <Nav.Item className="my-2 mx-0">
             <Nav.Link className="p-3" eventKey="first" style={{ backgroundColor: "#41b354", color: "white" }}>
+              {" "}
+              <i class="fa-solid fa-user-pen"></i> View Profile
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item className="my-2 mx-0">
+            <Nav.Link className="p-3" eventKey="second" style={{ backgroundColor: "#41b354", color: "white" }}>
               {" "}
               <i class="fa-solid fa-user-pen"></i> Edit Profile
             </Nav.Link>
@@ -35,7 +42,7 @@ function MyAccount() {
             <Nav.Link
             style={{ backgroundColor: "#41b354", color: "white" }}
               className="p-3"
-              eventKey="second"
+              eventKey="third"
               onClick={() => {
                 dispatch(logout(setRedirect));
               }}
@@ -49,6 +56,9 @@ function MyAccount() {
       <Col sm={12} md={10} className="border">
         <Tab.Content className="pb-5  ">
           <Tab.Pane eventKey="first">
+            <ViewProfile/>
+          </Tab.Pane>
+          <Tab.Pane eventKey="second">
             <EditProfile />
           </Tab.Pane>
         </Tab.Content>

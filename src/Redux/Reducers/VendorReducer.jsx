@@ -10,9 +10,14 @@ import {
   VERIFY_VENDOR_OTP_FAIL,
   RESEND_VENDOR_OTP_SUCCESS,
   RESEND_VENDOR_OTP_FAIL,
+  VENDOR_PROFILE_SUCCESS,
+  VENDOR_PROFILE_FAIL,
+  VENDOR_PROFILE_UPDATE_SUCCESS,
+  VENDOR_PROFILE_UPDATE_FAIL
 } from "../Actions/ActionTypes";
 
 const Vendor = {
+  data:[],
   access: null,
   loading: false,
   isVendorAuthenticated: false,
@@ -21,24 +26,36 @@ const Vendor = {
   isVerified: false
 };
 
-const AuthReducer = (state = Vendor, action) => {
+const VendorReducer = (state = Vendor, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case VENDOR_REGISTER_SUCCESS:
     case VENDOR_LOGIN_SUCCESS:
-      localStorage.setItem("access", payload.access_token);
+    case VENDOR_PROFILE_UPDATE_SUCCESS:
       return {
         ...state,
         isVendorAuthenticated: true,
+        data:payload
       };
+
+      case VENDOR_PROFILE_SUCCESS:
+          return {
+            ...state,
+            isVendorAuthenticated: true,
+            data: payload.data
+          };
+    
 
     case VENDOR_REGISTER_FAIL:
     case VENDOR_LOGIN_FAIL:
+    case VENDOR_PROFILE_FAIL:
+    case VENDOR_PROFILE_UPDATE_FAIL:
       return {
         ...state,
         isVendorAuthenticated: false,
         vendor: null,
+        error: payload
       };
 
       case LOGOUT_SUCCESS:
@@ -91,4 +108,4 @@ const AuthReducer = (state = Vendor, action) => {
   }
 };
 
-export default AuthReducer;
+export default VendorReducer;

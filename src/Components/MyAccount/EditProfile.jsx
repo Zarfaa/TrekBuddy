@@ -1,37 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUserProfile, getUserProfile } from '../../Redux/Actions/UserActions';
+import { getUserProfile, updateUserProfile } from '../../Redux/Actions/UserActions';
 import "./style.css"
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const [loadingStates, setLoadingStates] = useState(false);
-  const { loading, data } = useSelector((state) => state.User);
+  const { loading, data} = useSelector((state) => state.User);
 
   const [userData, setUserData] = useState({
-    userName: data?.name || '',
-    DateOfBirth: data?.DateOfBirth || '',
-    contactNumber: data?.phoneNumber || '',
+    userName: '',
+    DateOfBirth: '',
+    contactNumber: '',
   });
   
-  useEffect(() => {
-    const id = localStorage.getItem('loginId');
-    dispatch(getUserProfile(id)); 
-  }, [dispatch]);
+
+  const id = localStorage.getItem('loginId');
+  console.log('Retrieved ID from local storage:', id);
 
   useEffect(() => {
     setLoadingStates(loading);
   }, [loading]);
-  
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getUserProfile(id));
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    setUserData({
+      userName: data.name,
+      DateOfBirth: data.DateOfBirth,
+      contactNumber: data.phoneNumber,
+      companyName: data.hotelName
+    });
+  }, [data]);
 
   const handleInputChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-
+  
   const handleSubmit =  (e) => {
     e.preventDefault();
     setLoadingStates(true);
-    const id = localStorage.getItem('loginId');
     dispatch(updateUserProfile(id, { ...userData }, setLoadingStates));
   };
   

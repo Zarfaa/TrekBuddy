@@ -28,7 +28,7 @@ const initialState = {
   passwordSuccess: false
 };
 
-const userAccount = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case USER_REGISTER_SUCCESS:
@@ -111,4 +111,4 @@ const userAccount = (state = initialState, action) => {
   }
 };
 
-export default userAccount;
+export default userReducer;

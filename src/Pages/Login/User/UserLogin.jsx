@@ -26,18 +26,22 @@ const UserLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoadingStates(true)
-    dispatch(userLogin({ ...userData }, setLoadingStates));
+    setLoadingStates(true);
   };
-
+  
+  useEffect(() => {
+    if (loadingStates) {
+      dispatch(userLogin({ ...userData }, () => setLoadingStates(false)));
+    }
+  }, [loadingStates, dispatch, userData]);
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-
-  if (isUserAuthenticated) {
-    return <Navigate replace to="/" />;
-  }
+    if (isUserAuthenticated) {
+      return <Navigate replace to="/" />;
+    }
 
   return (
     <>
