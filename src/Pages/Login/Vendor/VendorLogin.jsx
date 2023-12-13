@@ -100,7 +100,7 @@ const VendorLogin = () => {
                 } toggle-password field-icon`}
             ></i>
           </div>
-          <Link to="/sendOTP"><div><button type="button" className="Forget_password" >Forgot Password</button></div></Link>
+          <Link to="/sendVendorOTP"><div><button type="button" className="Forget_password" >Forgot Password</button></div></Link>
 
           {error.email && <p className="error-message">{error.email}</p>}
           {error.password && (

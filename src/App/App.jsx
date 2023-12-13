@@ -8,7 +8,6 @@ import UserSignup from "../Pages/Signup/UserSignUP"
 import VendorSignup from "../Pages/Signup/VendorSignUP"
 import UserLogin from "../Pages/Login/User/UserLogin"
 import VendorLogin from "../Pages/Login/Vendor/VendorLogin"
-import SendOTP from '../Pages/Login/User/SendOTP';
 import Footer from "../Components/Footer/Footer"
 import ListProperty from '../Components/ListProperty/index';
 import VendorPortal from '../Components/VendorAccount/index';
@@ -16,8 +15,12 @@ import MultiStepForm from '../Components/ListProperty/Form';
 import MyAccount from '../Components/MyAccount';
 import { Provider } from 'react-redux';
 import store from '../Redux/Store';
-import ConfirmOTP from '../Pages/Login/User/VerifyOTP';
-import ResetPassword from '../Pages/Login/User/ResetPassword';
+import SendUserOTP from '../Pages/Login/User/SendUserOTP';
+import VerifyUserOTP from '../Pages/Login/User/VerifyUserOTP';
+import ResetUserPassword from '../Pages/Login/User/ResetUserPassword';
+import SendVendorOTP from '../Pages/Login/Vendor/SendVendorOTP';
+import VerifyVendorOTP from '../Pages/Login/Vendor/VerifyVendorOTP';
+import ResetVendorPassword from '../Pages/Login/Vendor/ResetVendorPassword';
 import Destinations from '../Pages/Destinations';
 import Account from "../Pages/Account"
 import Login from "../Pages/Login/Account"
@@ -36,9 +39,12 @@ function App() {
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/userlogin" element={<UserLogin />}></Route>
             <Route path="/vendorlogin" element={<VendorLogin />}></Route>
-            <Route path="/sendOTP" element={<SendOTP />}></Route>
-            <Route path="/verifyOTP" element={<ConfirmOTP />}></Route>
-            <Route path="/resetpassword" element={<ResetPassword />}></Route>
+            <Route path="/sendUserOTP" element={<SendUserOTP />}></Route>
+            <Route path="/verifyUserOTP" element={<VerifyUserOTP />}></Route>
+            <Route path="/resetUserpassword" element={<ResetUserPassword />}></Route>
+            <Route path="/sendVendorOTP" element={<SendVendorOTP />}></Route>
+            <Route path="/verifyVendorOTP" element={<VerifyVendorOTP />}></Route>
+            <Route path="/resetVendorpassword" element={<ResetVendorPassword />}></Route>
             <Route path="/listproperty" element={<ListProperty />}></Route>
             <Route path="/vendorportal" element={<VendorPortal />}></Route>
             <Route path="/listing" element={<MultiStepForm />}></Route>

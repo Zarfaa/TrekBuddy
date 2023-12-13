@@ -2,13 +2,12 @@ import React, { useState,  useEffect } from 'react';
 import { verifyUserOTP } from "../../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
-const ConfirmOTP = () => {
+const VerifyOTP = () => {
   const dispatch = useDispatch();
   const [loadingStates, setLoadingStates] = useState(false);
   const [otp, setOtp] = useState('');
-  const { isVerified, loading } = useSelector((state) => state.User);
+  const { isVerified, loading , currentStep} = useSelector((state) => state.User);
 
   const handleSubmit = async (e) => {
     const userId = localStorage.getItem("userId");
@@ -21,12 +20,15 @@ const ConfirmOTP = () => {
   useEffect(() => {
     setLoadingStates(loading);
   }, [loading]);
-
+  
+  if (currentStep === 'verifyOTP') {
+    return <Navigate replace to="/sendOTP" />;
+  }
 
   if (isVerified) {
-    toast("OTP sent! Set Your Password");
-    return <Navigate replace to="/resetpassword" />;
-  }
+      return <Navigate replace to="/resetUserpassword" />;
+    }
+
 
   return (
     <div style={{ margin: "10% 30%", padding: "5%" }} className='card'>
@@ -58,4 +60,4 @@ const ConfirmOTP = () => {
   );
 };
 
-export default ConfirmOTP;
+export default VerifyOTP;

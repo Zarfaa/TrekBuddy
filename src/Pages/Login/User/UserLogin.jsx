@@ -82,7 +82,7 @@ const UserLogin = () => {
             ></i>
           </div>
 
-          <Link to="/sendOTP"><div><button type="button" className="Forget_password" >Forgot Password?</button></div></Link>
+          <Link to="/sendUserOTP"><div><button type="button" className="Forget_password" >Forgot Password?</button></div></Link>
           <div className="button_container">
             <button type="submit">
               {loadingStates ? (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { sendUserOTP, resendUserOTP  } from "../../../Redux/Actions/UserActions";
+import { sendVendorOTP,resendVendorOTP } from "../../../Redux/Actions/VendorActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,13 +8,13 @@ const SendOTP = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [loadingStates, setLoadingStates] = useState(false);
-  const { isSuccess , loading} = useSelector((state) => state.User);
+  const { isSuccess , loading} = useSelector((state) => state.Vendor);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoadingStates(true)
-    dispatch(sendUserOTP(email, setLoadingStates));
-    dispatch(resendUserOTP(email, setLoadingStates));
+    dispatch(sendVendorOTP(email, setLoadingStates));
+    dispatch(resendVendorOTP(email, setLoadingStates));
     console.log(email)
   };
 
@@ -25,7 +25,7 @@ const SendOTP = () => {
 
   if ( isSuccess) {
     toast("OTP sent! Check Your Email");
-    return <Navigate replace to="/verifyOTP" />;
+    return <Navigate replace to="/verifyVendorOTP" />;
   }
 
   return (

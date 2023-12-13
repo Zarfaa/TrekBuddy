@@ -15,7 +15,7 @@ import {
   RESET_USER_PASSWORD_SUCCESS,
   RESET_USER_PASSWORD_FAIL,
   USER_PROFILE_UPDATE_SUCCESS,
-  USER_PROFILE_UPDATE_FAIL
+  USER_PROFILE_UPDATE_FAIL,
 } from "../Actions/ActionTypes";
 
 const initialState = {
@@ -25,7 +25,8 @@ const initialState = {
   isUserAuthenticated: false,
   isSuccess: false,
   isVerified: false,
-  passwordSuccess: false
+  passwordSuccess: false,
+  currentStep: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -40,12 +41,12 @@ const userReducer = (state = initialState, action) => {
         data: payload,
       };
 
-      case USER_PROFILE_SUCCESS:
-          return {
-            ...state,
-            isUserAuthenticated: true,
-            data: payload.data,
-          };
+    case USER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        isUserAuthenticated: true,
+        data: payload.data,
+      };
 
     case RESET_USER_PASSWORD_SUCCESS:
       return {
@@ -65,13 +66,13 @@ const userReducer = (state = initialState, action) => {
         error: payload,
       };
 
-      case LOGOUT_SUCCESS:
-          return {
-            ...state,
-            data: null,
-            error: payload,
-            isUserAuthenticated: false,
-          };
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        data: null,
+        error: payload,
+        isUserAuthenticated: false,
+      };
 
 
     case SEND_USER_OTP_SUCCESS:
@@ -80,14 +81,17 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isSuccess: true,
         access: payload.access_token,
-        data: payload
+        data: payload,
+        currentStep: 'sendOTP',
       };
+
     case VERIFY_USER_OTP_SUCCESS:
       return {
         ...state,
         isVerified: true,
         access: payload.access_token,
-        data: payload
+        data: payload,
+        currentStep: 'verifyOTP',
       };
 
 

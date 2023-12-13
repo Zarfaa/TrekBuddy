@@ -69,6 +69,7 @@ export const getUserProfile = (id) => async (dispatch) => {
       type: USER_PROFILE_SUCCESS,
       payload: res.data,
     });
+    toast.success(res.data.message);
   } catch (error) {
     toast.error(error.response.data.message)
     dispatch({
@@ -87,7 +88,7 @@ export const updateUserProfile = (id, data, setLoadingStates) => async (dispatch
       payload: res.data,
     });
     setLoadingStates(false);
-    toast.error(res.data.message)
+    toast.success(res.data.message)
   } catch (error) {
     setLoadingStates(false);
     toast.error(error.response.data.message)
@@ -110,7 +111,7 @@ export const resetUserpassword = (data, userId, setLoadingStates) => async (disp
       payload: res.data,
     });
     setLoadingStates(false)
-    toast.error(res.data.message)
+    toast.success(res.data.message)
   } catch (error) {
     setLoadingStates(false)
     toast.error(error.response.data.message)
@@ -122,14 +123,14 @@ export const resetUserpassword = (data, userId, setLoadingStates) => async (disp
 
 export const sendUserOTP = (email, setLoadingStates) => async (dispatch) => {
   try {
-    const res = await axios.post("user/send-otp", email);
+    const res = await axios.post("user/send-otp", {email});
     dispatch({
       type: SEND_USER_OTP_SUCCESS,
       payload: res.data,
     });
     setLoadingStates(false)
     localStorage.setItem("userId", res.data.userId);
-    toast.error(res.data.message)
+    toast.success(res.data.message)
   } catch (error) {
     setLoadingStates(false)
     toast.error(error.response.data.message)
@@ -140,15 +141,15 @@ export const sendUserOTP = (email, setLoadingStates) => async (dispatch) => {
 };
 
 
-export const resendUserOTP = (data, setLoadingStates) => async (dispatch) => {
+export const resendUserOTP = (email, setLoadingStates) => async (dispatch) => {
   try {
-    const res = await axios.post("user/resend-otp", data);
+    const res = await axios.post("user/resend-otp", {email});
     dispatch({
       type: RESEND_USER_OTP_SUCCESS,
       payload: res.data,
     });
     setLoadingStates(false)
-    toast.error(res.data.message)
+    toast.success(res.data.message)
   } catch (error) {
     setLoadingStates(false)
     toast.error(error.response.data.message)
@@ -167,10 +168,10 @@ export const verifyUserOTP = (otp, userId, setLoadingStates) => async (dispatch)
       payload: res.data,
     });
     setLoadingStates(false)
-    toast.error(res.data.message)
+    toast.success(res.message)
   } catch (error) {
     setLoadingStates(false)
-    toast.error(error.response.data.message)
+    toast.error(error.response.message)
     dispatch({
       type: VERIFY_USER_OTP_FAIL,
     });

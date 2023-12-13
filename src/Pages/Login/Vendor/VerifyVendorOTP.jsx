@@ -1,5 +1,5 @@
 import React, { useState,  useEffect } from 'react';
-import { verifyUserOTP } from "../../../Redux/Actions/UserActions";
+import { verifyVendorOTP } from "../../../Redux/Actions/VendorActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
