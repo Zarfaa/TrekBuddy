@@ -23,12 +23,6 @@ const EditProfile = () => {
   }, [loading]);
 
   useEffect(() => {
-    if (id) {
-      dispatch(getUserProfile(id));
-    }
-  }, [id, dispatch]);
-
-  useEffect(() => {
     setUserData({
       userName: data.name,
       DateOfBirth: data.DateOfBirth,

@@ -20,7 +20,6 @@ import {
 
 const initialState = {
   data: [],
-  loading: false,
   error: null,
   isUserAuthenticated: false,
   isSuccess: false,
@@ -32,12 +31,25 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case USER_REGISTER_SUCCESS:
-    case USER_PROFILE_UPDATE_SUCCESS:
+    
     case USER_LOGIN_SUCCESS:
+      
       return {
         ...state,
         isUserAuthenticated: true,
+        data: payload,
+      };
+
+    case USER_PROFILE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        isUserAuthenticated: true,
+        data: payload,
+      };
+
+    case USER_REGISTER_SUCCESS:
+      return {
+        ...state,
         data: payload,
       };
 
@@ -91,7 +103,7 @@ const userReducer = (state = initialState, action) => {
         isVerified: true,
         access: payload.access_token,
         data: payload,
-        currentStep: 'verifyOTP',
+        // currentStep: 'verifyOTP',
       };
 
 

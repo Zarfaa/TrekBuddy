@@ -1,7 +1,6 @@
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 import { registerUser } from "../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -9,9 +8,9 @@ import { Navigate } from "react-router-dom";
 const UserSignup = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(true);
+  const [signupSuccess, setSignupSuccess] = useState(false);
   const [loadingStates, setLoadingStates] = useState(false);
   const loading = useSelector((state) => state.User.loading);
-  const { isUserAuthenticated } = useSelector((state) => state.User);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -19,7 +18,7 @@ const UserSignup = () => {
     password: "",
     DateOfBirth: "",
     Gender: "",
-    role: "",
+    role: "User",
     phoneNumber: "",
   });
 
@@ -50,7 +49,7 @@ const UserSignup = () => {
     if (!passwordRegex.test(trimmedPassword)) {
       setError({
         ...error,
-        password: "Password must be at least 8 characters",
+        password: "Password must be at least 8 characters with at least 1 UpperCase,LowerCase,number and special character.",
       });
       return;
     }
@@ -69,23 +68,30 @@ const UserSignup = () => {
       return;
     }
     setLoadingStates(true);
-    dispatch(registerUser({ ...userData, password: trimmedPassword }, setLoadingStates, setError))
+    dispatch(registerUser({ ...userData, password: trimmedPassword }, setLoadingStates, setSignupSuccess, setError))
+    setUserData(
+      {firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      DateOfBirth: "",
+      Gender: "",
+      role: "User",
+      phoneNumber: ""})
   };
 
   useEffect(() => {
     setLoadingStates(loading);
   }, [loading]);
 
+  if(signupSuccess){
+    return <Navigate replace to="/"/>
+  }
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  if (isUserAuthenticated) {
-    toast.success('Registered SuccessFully!')
-    return <Navigate replace to="/" />;
-  }
-
 
   return (
     <>
@@ -193,21 +199,6 @@ const UserSignup = () => {
               onChange={handleInputChange}
               required
             />
-          </div>
-
-          <div>
-            <label htmlFor="role">Role:</label>
-            <select
-              id="role"
-              name="role"
-              value={userData.role}
-              required
-              className="form-control"
-              onChange={handleInputChange}
-            >
-              <option value="vendor">Vendor</option>
-              <option value="user">User</option>
-            </select>
           </div>
 
           <div>

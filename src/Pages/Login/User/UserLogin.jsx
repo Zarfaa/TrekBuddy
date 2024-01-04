@@ -9,7 +9,8 @@ const UserLogin = () => {
   const dispatch = useDispatch();
   const [loadingStates, setLoadingStates] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
-  const { isUserAuthenticated, loading } = useSelector((state) => state.User);
+  const isUserAuthenticated  = useSelector((state) => state.User.isUserAuthenticated);
+  const loading  = useSelector((state) => state.User.loading);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -26,22 +27,24 @@ const UserLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     setLoadingStates(true);
+    dispatch(userLogin({ ...userData },setLoadingStates))
+    setUserData({
+      email: "",
+      password: "",
+    })
+    
   };
   
-  useEffect(() => {
-    if (loadingStates) {
-      dispatch(userLogin({ ...userData }, () => setLoadingStates(false)));
-    }
-  }, [loadingStates, dispatch, userData]);
-  
   const togglePasswordVisibility = () => {
+    
     setShowPassword(!showPassword);
   };
 
-    if (isUserAuthenticated) {
-      return <Navigate replace to="/" />;
-    }
+  if (isUserAuthenticated) {
+    return <Navigate replace to="/" />;
+  }
 
   return (
     <>

@@ -23,7 +23,7 @@ import { toast } from "react-toastify";
 
 
 // USER SIGNUP ACTION
-export const registerUser = (data, setError, setLoadingStates) => async (dispatch) => {
+export const registerUser = (data, setError,setSignupSuccess, setLoadingStates) => async (dispatch) => {
   try {
     const res = await axios.post("user/signup", data);
     dispatch({
@@ -31,6 +31,8 @@ export const registerUser = (data, setError, setLoadingStates) => async (dispatc
       payload: res.data,
     });
     setLoadingStates(false);
+    setSignupSuccess(true);
+    toast.success(res.data.message)
   } catch (error) {
     setError(error.response.data);
     setLoadingStates(false);
@@ -38,6 +40,7 @@ export const registerUser = (data, setError, setLoadingStates) => async (dispatc
       type: USER_REGISTER_FAIL,
       error: error.response,
     });
+    toast.error(error.response.data.message)
   }
 };
 
@@ -45,6 +48,7 @@ export const registerUser = (data, setError, setLoadingStates) => async (dispatc
 export const userLogin = (data, setLoadingStates) => async (dispatch) => {
   try {
     const res = await axios.post("user/login", data);
+    
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: res.data,

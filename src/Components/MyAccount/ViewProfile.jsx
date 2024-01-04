@@ -5,7 +5,7 @@ import "./style.css"
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const { data} = useSelector((state) => state.User);
+  const { data } = useSelector((state) => state.User);
 
   const [userData, setUserData] = useState({
     userName: '',
@@ -24,7 +24,7 @@ useEffect(() => {
     contactNumber: data.phoneNumber,
     email:data.email
   });
-}, [id, dispatch, data]);
+}, []);
 
 
   return (

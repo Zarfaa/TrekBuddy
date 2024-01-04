@@ -34,7 +34,7 @@ let NavBar = () => {
         )}
 
         {isUserAuthenticated && (
-          <Link id="text" to="/myaccount">My Account</Link>
+          <Link id="text"  to="/myaccount">My Account</Link>
     
         )}
 

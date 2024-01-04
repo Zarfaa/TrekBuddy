@@ -7,7 +7,7 @@ const VerifyOTP = () => {
   const dispatch = useDispatch();
   const [loadingStates, setLoadingStates] = useState(false);
   const [otp, setOtp] = useState('');
-  const { isVerified, loading , currentStep} = useSelector((state) => state.User);
+  const { isVerified, loading } = useSelector((state) => state.User);
 
   const handleSubmit = async (e) => {
     const userId = localStorage.getItem("userId");
@@ -21,7 +21,7 @@ const VerifyOTP = () => {
     setLoadingStates(loading);
   }, [loading]);
   
-  if (currentStep === 'verifyOTP') {
+  if (!isVerified === 'verifyOTP') {
     return <Navigate replace to="/sendOTP" />;
   }
 
