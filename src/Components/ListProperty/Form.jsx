@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import BasicInfo from './BasicInfo';
-import Price from './Price';
+import BasicInfo from './Address';
+import Price from './HotelDetail';
 import Photos from './Photos';
 
 import './Form.css';
