@@ -1,15 +1,16 @@
 .Account_container {
-    border: 2px solid rgb(109, 106, 106);
     border-radius: 25px;
     margin: 7% 20%;
     padding: 3% 5% 5% 5%;
-    box-shadow: 0px 4px 8px rgba(12, 12, 12, 0.2);
+    box-shadow: 2px 2px 6px #d7eaa8, -2px -2px 20px #556b2f;
+    background-color: #d7eaa8;
 }
 
 .Account_container h3 {
     font-family: 'Seaweed Script', cursive;
-    color: rgb(65, 179, 84);
+    color:  #556b2f;
     font-size: 2vw;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 7%;
 }
@@ -17,10 +18,6 @@
     font-size: 2vw;
     text-align: center;
 }
-
-.Login-text{
-    color: rgb(65, 179, 84);
-  }
 
   .Account_container p{
     text-align: center;
@@ -30,10 +27,10 @@
     margin-right: 10px;
 }
 .btn-color {
-    color: white;
+    color: #d7eaa8;
     font-weight: 500;
-    background-color: #41b354;
-    border-radius: 25px;
+    background-color: #556b2f;
+    border-radius: 15px;
     padding: 0.7vw;
 }
 
@@ -43,8 +40,8 @@
     transition: all 0.2s ease-out;
     box-shadow: 0px 4px 8px rgba(12, 12, 12, 0.2);
     font-weight: 500;
-    background-color: #41b354;
-    border: solid white 2px;
+    background-color: #556b2f;
+    border: solid #d7eaa8 2px;
 }
 
 .Flex {

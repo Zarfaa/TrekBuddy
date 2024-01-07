@@ -1,14 +1,9 @@
-/* Signup.css */
-
-.account_Container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 5%;
-}
-
-#login{
-  color:rgb(65, 179, 84)
+.SignUp_Container {
+  margin: 5% 30%;
+  background-color: #d7eaa8;
+  border: 2px solid #556b2f;
+  border-radius: 15px;
+  padding: 2% 5%;
 }
 
 .Title{
@@ -16,55 +11,31 @@
   margin-bottom: 20px;
 }
 
-
-.ContentBorder {
- border: 2px solid rgb(65, 179, 84);
- padding: 35px;
- transition: all 0.2s ease-out;
- box-shadow: 0px 4px 8px rgb(65, 179, 84);
- top: -0.4vw;
- border-radius: 25px;
+.account a{
+  font-weight: 750;
+  color:  #556b2f;
 }
 
-.ContentBorder > div {
- display: flex;
- gap: 30px;
- align-items: center;
- margin-bottom: 15px;
-}
-
-.ContentBorder label {
- min-width: 100px; 
-}
-
-.ContentBorder input,
-.ContentBorder select {
- flex: 1;
- padding: 10px;
-}
-
- 
-.ContentBorder input:hover, .ContentBorder select:hover{
- transition: all 0.2s ease-out;
- box-shadow: 0px 4px 8px rgb(65, 179, 84);
- top: -0.4vw;
+.account{
+  margin-left: 49%;
+  font-style: italic;
 }
 
 .button_container button {
- background-color: rgb(65, 179, 84);
+ background-color:  #556b2f;
  padding: 0.7vw 2vw ;
  border-radius: 25px;
- color: white;
+ color: #d7eaa8;
  border: none;
  cursor: pointer;
 }
 
 .button_container button:hover{
-color: rgb(65, 179, 84);
- background-color: white;
+color:  #556b2f;
+ background-color: #d7eaa8;
  border: 1px solid rgb(196, 250, 205);
  transition: all 0.2s ease-out;
- box-shadow: 0px 4px 8px  rgb(65, 179, 84);
+ box-shadow: 0px 4px 8px   #556b2f;
  top: -1vw;
 }
 
@@ -78,4 +49,21 @@ color: rgb(65, 179, 84);
  top: 50%;   
  transform: translateY(-50%);
  cursor: pointer;
+}
+
+
+@media screen and (max-width: 500px){
+  .SignUp_Container {
+    margin: 10% 20%;
+    background-color: #d7eaa8;
+    border: 2px solid #556b2f;
+    border-radius: 15px;
+    padding: 2% 5%;
+    font-size: 3vw;
+  }
+  
+  .account{
+    margin-left: 2%;
+    font-style: italic;
+  }
 }

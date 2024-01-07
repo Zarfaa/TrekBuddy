@@ -8,7 +8,7 @@
 
 .section_subtitle{
     font-family: 'Seaweed Script', cursive;
-    color: rgb(65, 179, 84);
+    color: #556b2f;
     text-align: center;
     font-size: 2vw;
 }
@@ -24,7 +24,7 @@
     border: none;
     width: 25vw;
     height: 20vw;
-    filter: brightness(50%)
+    filter: brightness(70%)
 }
 
 .flex-item {

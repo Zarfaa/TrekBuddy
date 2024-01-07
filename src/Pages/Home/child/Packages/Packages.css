@@ -23,7 +23,7 @@
   border: 1px solid #ccc;
   text-align: left;
   padding: 5%;
-  box-shadow: 0px 4px 8px  rgb(65, 179, 84);
+  box-shadow: 0px 4px 8px #556b2f;
 }
 
 .Section-content h3 {
@@ -37,24 +37,23 @@
 }
 
 .Section-content:hover {
-  background-color: rgb(65, 179, 84);
-  color: white;
+  background-color: #556b2f;
+  color: #d7eaa8;
   transition: all 0.2s ease-out;
-  box-shadow: 0px 4px 8px  rgb(65, 179, 84);
+  box-shadow: 0px 4px 8px #556b2f;
   top: -2vw;
 }
 
 .Section-content button {
-  background-color: rgb(65, 179, 84);
+  background-color: #556b2f;
   padding: 5px 15px;
   border-radius: 25px;
-  color: white;
+  color: #d7eaa8;
   margin-bottom: 5%;
   margin-top: 5%;
 }
 
 .Section-content:hover button {
-  background-color: white;
-  color: rgb(65, 179, 84);
-  color: rgb(65, 179, 84);
+  background-color: #d7eaa8;
+  color: #556b2f;
 }

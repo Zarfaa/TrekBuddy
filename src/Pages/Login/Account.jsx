@@ -8,10 +8,10 @@ const Account = () => {
       <h4>Welcome Back!</h4>
       <span style={{marginLeft:"19vw"}}>Login as a user or vendor</span>
       <div className='Flex'>
-      <Link to="/userlogin"><div><button type="button" className="btn btn-color"><i class="fa-solid fa-users signup-icon"></i>User</button></div></Link>
-      <Link to="/vendorlogin"><div><button type="button" className="btn btn-color"><i className="fa-solid fa-store signup-icon"></i>Vendor</button></div></Link>
+      <Link to="/userlogin"><div><button type="button" className="btn btn-color"><i class="fa-solid fa-users signup-icon"></i>Login as User</button></div></Link>
+      <Link to="/vendorlogin"><div><button type="button" className="btn btn-color"><i className="fa-solid fa-store signup-icon"></i>Login as Vendor</button></div></Link>
       </div>
-      <p>Don't have an account?<Link to="/login"> <span className='Login-text'>Signup</span></Link></p>
+      <p>Don't have an account?<Link to="/register"> <button className='btn btn-color'>Signup</button></Link></p>
     </div>
   )
 }

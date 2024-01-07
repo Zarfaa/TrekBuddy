@@ -30,16 +30,16 @@ let About = () => {
          </div>
          <div className="about__data">
             <div>
-            <p> <i className='bx bxs-check-circle'></i> Explore a wide range of destinations across Pakistan</p>
+            <p> <i className='icon-color bx bxs-check-circle'></i> Explore a wide range of destinations across Pakistan</p>
             </div>
             <div>  
-            <p> <i className='bx bxs-check-circle'></i> Efforlessly choose rentals that suits your preferences and budget.</p>
+            <p> <i className='icon-color bx bxs-check-circle'></i> Efforlessly choose rentals that suits your preferences and budget.</p>
             </div>
             <div>  
-            <p> <i className='bx bxs-check-circle'></i> Immerse yourself in a world of exciting activities and attractions.</p> 
+            <p> <i className=' icon-color bx bxs-check-circle'></i> Immerse yourself in a world of exciting activities and attractions.</p> 
             </div>        
             <div>
-            <p> <i className='bx bxs-check-circle'></i> Embark on an extraordinary travel adventure with our travel website</p>  
+            <p> <i className='icon-color bx bxs-check-circle'></i> Embark on an extraordinary travel adventure with our travel website</p>  
             </div>            
           </div> 
           </div> 

@@ -1,15 +1,32 @@
-.OTP_Form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10%;
+
+
+.back-btn {
+    background-color: #556b2f ;
+    padding: 3% 10%;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 5%;
+  }
+
+
+.verify-btn{
+    background-color: #556b2f ;
+    padding: 3% 10%;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 5%;
 }
 
-#back-btn {
-    background-color: rgb(65, 179, 84);
-    padding: 10px 50px;
+.resend-OTP{
+    background-color: #556b2f ;
+    padding: 3% ;
     color: white;
-    border-radius: 25px;
+    border-radius: 15px;
     cursor: pointer;
-    margin-top: 5%;
-  }
+}
+
+@media screen and (max-width: 500px){
+
+}

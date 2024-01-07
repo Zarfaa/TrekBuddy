@@ -1,15 +1,15 @@
 import "./Signup.css";
 import { Link } from "react-router-dom";
-import { useState , useEffect} from "react";
-import { registerVendor} from "../../Redux/Actions/VendorActions";
+import { useState, useEffect } from "react";
+import { registerVendor } from "../../Redux/Actions/VendorActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const VendorSignup = () => {
   const dispatch = useDispatch();
-  const { isVendorAuthenticated , loading} = useSelector((state) => state.Vendor);
+  const { isVendorAuthenticated, loading } = useSelector((state) => state.Vendor);
   const [loadingStates, setLoadingStates] = useState(false);
-  const [userData, setUserData] = useState({
+  const [vendorData, setvendorData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -34,15 +34,15 @@ const VendorSignup = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-    setErrors({ ...errors, [name]: "" }); 
+    setvendorData({ ...vendorData, [name]: value });
+    setErrors({ ...errors, [name]: "" });
   };
 
   const validateForm = () => {
     let isValid = true;
 
 
-    if (!userData.email.includes("@")) {
+    if (!vendorData.email.includes("@")) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         email: "Email must contain @",
@@ -50,7 +50,7 @@ const VendorSignup = () => {
       isValid = false;
     }
 
-    if (userData.password.length < 8) {
+    if (vendorData.password.length < 8) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         password: "Password must be at least 8 characters",
@@ -58,7 +58,7 @@ const VendorSignup = () => {
       isValid = false;
     }
 
-    if (!userData.DateOfBirth) {
+    if (!vendorData.DateOfBirth) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         DateOfBirth: "Date of Birth is required",
@@ -66,7 +66,7 @@ const VendorSignup = () => {
       isValid = false;
     }
 
-    if (!/^[0-9]*$/.test(userData.phoneNumber)) {
+    if (!/^[0-9]*$/.test(vendorData.phoneNumber)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         phoneNumber: "Contact Number must contain only numbers",
@@ -81,12 +81,12 @@ const VendorSignup = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      const signupData = { ...userData };
-      const trimmedPassword = userData.password.trim();
+      const signupData = { ...vendorData };
+      const trimmedPassword = vendorData.password.trim();
       setLoadingStates(true)
       dispatch(registerVendor({ ...signupData, password: trimmedPassword }, setLoadingStates))
+    }
   }
-}
 
   if (isVendorAuthenticated) {
     return <Navigate replace to="/" />;
@@ -94,165 +94,182 @@ const VendorSignup = () => {
 
 
   return (
-    <>
-      <form className="account_Container" onSubmit={handleSubmit}>
-        <p>
-          Already Have an account?{" "}
-          <Link to="/vendorLogin" id="login">
-            Login
-          </Link>
-        </p>
-        <div className="ContentBorder">
-          <h2 className="Title">Vendor Sign Up</h2>
-          <div>
-            <label htmlFor="firstName">FirstName:</label>
-            <input
-              name="firstName"
-              value={userData.firstName}
-              type="text"
-              id="firstName"
-              className="form-control"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
 
-          <div>
-            <label htmlFor="lastName">LastName:</label>
-            <input
-              name="lastName"
-              value={userData.lastName}
-              type="text"
-              id="lastName"
-              className="form-control"
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              name="email"
-              value={userData.email}
-              type="email"
-              id="email"
-              className="form-control"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              name="password"
-              value={userData.password}
-              type="password"
-              id="password"
-              required
-              className="form-control"
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="DateOfBirth">Date of Birth:</label>
-            <input
-              name="DateOfBirth"
-              value={userData.DateOfBirth}
-              placeholder="MM/DD/YY"
-              className="form-control"
-              id="DateOfBirth"
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <div>
-            <label>Gender:</label>
-            <label htmlFor="GenderMale">Male</label>
-            <input
-              name="Gender"
-              value="Male"
-              type="radio"
-              id="GenderMale"
-              onChange={handleInputChange}
-              required
-            />
-            <label htmlFor="GenderFemale">Female</label>
-            <input
-              name="Gender"
-              value="Female"
-              type="radio"
-              id="GenderFemale"
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="role">Role:</label>
-            <select
-              id="role"
-              name="role"
-              value={userData.role}
-              required
-              className="form-control"
-              onChange={handleInputChange}
-            >
-              <option value="vendor">Vendor</option>
-              <option value="user">User</option>
-            </select>
-          </div>
+    <form className="SignUp_Container" onSubmit={handleSubmit}>
+      <p className="account mb-5">Already Have an account? <Link to="/vendorLogin" >Login</Link></p>
+      <div className="mb-3">
+        <h2 className="Title">Welcome!</h2>
+      </div>
+      <div className="row mb-3">
+        <div className="col-6">
+          <label htmlFor="firstName">FirstName:</label>
+          <input
+            name="firstName"
+            className="form-control"
+            value={vendorData.firstName}
+            type="text"
+            id="firstName"
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="col-6">
+          <label htmlFor="lastName">LastName:</label>
+          <input
+            name="lastName"
+            value={vendorData.lastName}
+            className="form-control"
+            type="text"
+            id="lastName"
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
 
 
-          <div>
-            <label htmlFor="phoneNumber">Contact Number:</label>
-            <input
-              name="phoneNumber"
-              className="form-control"
-              value={userData.phoneNumber}
-              type="tel"
-              id="phoneNumber"
-              pattern="[0-9]*"
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="lastName">Company Name:</label>
-            <input
-              name="companyName"
-              className="form-control"
-              value={userData.companyName}
-              type="text"
-              id="companyName"
-              onChange={handleInputChange}
-            />
-          </div>
-          {errors.email && <p className="error-message">{errors.email}</p>}
-          {errors.password && (
-            <p className="error-message">{errors.password}</p>
-          )}
-          {errors.DateOfBirth && (
-            <p className="error-message">{errors.DateOfBirth}</p>
-          )}
-          {errors.phoneNumber && (
-            <p className="error-message">{errors.phoneNumber}</p>
-          )}
+      <div className="mb-3">
+        <label htmlFor="email">Email:</label>
+        <input
+          name="email"
+          value={vendorData.email}
+          type="email"
+          id="email"
+          className="form-control"
+          required
+          onChange={handleInputChange}
+        />
+      </div>
 
-          <div className="button_container">
-          {loadingStates ? (
-                <div class="spinner-border text-light" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              ) : (
-                ""
-              )}
-            <button type="submit">Submit</button>
+      <div className="mb-3">
+        <label htmlFor="password">Password:</label>
+        <input
+          name="password"
+          value={vendorData.password}
+          type="password"
+          id="password"
+          required
+          className="form-control"
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="DateOfBirth">Date of Birth:</label>
+        <input
+          name="DateOfBirth"
+          value={vendorData.DateOfBirth}
+          placeholder="MM/DD/YY"
+          className="form-control"
+          id="DateOfBirth"
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div className="mb-3">
+        <div className="row">
+          <label>Gender:</label>
+        </div>
+
+        <div className="row">
+          <div className="form-check ms-3">
+            <label className="form-check-label" htmlFor="GenderMale">
+              Male
+              <input
+                className="form-check-input"
+                name="Gender"
+                value="Male"
+                type="radio"
+                id="GenderMale"
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+          </div>
+
+          <div className="form-check">
+            <label className="form-check-label" htmlFor="GenderFemale">
+              Female
+              <input
+                className="form-check-input"
+                name="Gender"
+                value="Female"
+                type="radio"
+                id="GenderFemale"
+                onChange={handleInputChange}
+                required
+              />
+            </label>
           </div>
         </div>
-      </form>
-    </>
+      </div>
+
+
+
+      <div className="mb-3">
+        <label htmlFor="role">Role:</label>
+        <select
+          id="role"
+          name="role"
+          value={vendorData.role}
+          required
+          className="form-control"
+          onChange={handleInputChange}
+        >
+          <option value="vendor">Vendor</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+
+
+      <div className="mb-3">
+        <label htmlFor="phoneNumber">Contact Number:</label>
+        <input
+          name="phoneNumber"
+          className="form-control"
+          value={vendorData.phoneNumber}
+          type="tel"
+          id="phoneNumber"
+          pattern="[0-9]*"
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="lastName">Company Name:</label>
+        <input
+          name="companyName"
+          className="form-control"
+          value={vendorData.companyName}
+          type="text"
+          id="companyName"
+          onChange={handleInputChange}
+        />
+      </div>
+      {errors.email && <p className="error-message">{errors.email}</p>}
+      {errors.password && (
+        <p className="error-message">{errors.password}</p>
+      )}
+      {errors.DateOfBirth && (
+        <p className="error-message">{errors.DateOfBirth}</p>
+      )}
+      {errors.phoneNumber && (
+        <p className="error-message">{errors.phoneNumber}</p>
+      )}
+
+      <div className="button_container">
+        {loadingStates ? (
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        ) : (
+          ""
+        )}
+        <button type="submit">Submit</button>
+      </div>
+
+    </form>
+
   );
 };
 

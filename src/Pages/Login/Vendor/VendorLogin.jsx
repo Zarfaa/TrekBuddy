@@ -62,13 +62,11 @@ const VendorLogin = () => {
 
 
   return (
-    <>
-      <form className="account_Container" onSubmit={handleSubmit}>
-
-        <div className="ContentBorder">
+    
+      <form className="Login_Container" onSubmit={handleSubmit}>
           <h2 className="Title">Vendor Login</h2>
 
-          <div>
+          <div className="mb-3">
             <label htmlFor="email">Email:</label>
             <input
               className="form-control"
@@ -81,7 +79,7 @@ const VendorLogin = () => {
             />
           </div>
 
-          <div className="input-with-icon">
+          <div className="input-with-icon mb-3">
             <label htmlFor="password">Password:</label>
             <input
               id="password"
@@ -118,9 +116,8 @@ const VendorLogin = () => {
               Submit</button>
           </div>
           
-        </div>
       </form>
-    </>
+  
   );
 };
 

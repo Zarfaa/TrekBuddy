@@ -24,12 +24,12 @@
   }
 
   .List_content:hover {
-    background-color: rgb(65, 179, 84);
+    background-color: #556b2f ;
     color: white;
   }
 
   .List_content button{
-    background-color: rgb(65, 179, 84)  ;
+    background-color: #556b2f   ;
     padding: 5px 15px;
     color: white;
     margin-bottom: 5%;
@@ -38,8 +38,7 @@
 
   .List_content:hover button {
     background-color: white;
-    color: rgb(65, 179, 84)  ;
-    color: rgb(65, 179, 84);
+    color: #556b2f  ;
   }
 
   @media screen and (min-width: 1440px){
@@ -83,7 +82,7 @@
       }
       
       .Section_content button{
-        background-color: rgb(65, 179, 84)  ;
+        background-color: #556b2f  ;
         padding: 1rem 3rem;
         border-radius: 40px;
         color: white;

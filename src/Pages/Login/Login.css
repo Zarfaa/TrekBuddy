@@ -1,80 +1,73 @@
-
-.Form_Container{
-  margin: 5% 20%;
-  
+.Login_Container{
+  margin: 5% 35%;
+  padding: 5%;
+  box-shadow: 0px 4px 8px #556b2f;
+  background-color: #d7eaa8;
+  border-radius: 10px;
 }
 
-  .Title{
-     text-align: center;
-     margin-bottom: 20px;
-     font-family: 'Seaweed Script', cursive;
-     font-size: 40px;
-     color: rgb(65, 179, 84);
+.Title {
+  text-align: center;
+  font-family: 'Seaweed Script', cursive;
+  font-size: 3vw;
+  font-weight: 600;
+  color: #556b2f;
+}
+
+.button_container button {
+  background-color: #556b2f;
+  padding: 0.7vw 3vw;
+  color: #d7eaa8;
+  border: none;
+  cursor: pointer;
+}
+
+.button_container button:hover {
+  border: 1px solid rgb(196, 250, 205);
+  transition: all 0.2s ease-out;
+  box-shadow: 0px 4px 8px #556b2f;
+  top: -1vw;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon i {
+  cursor: pointer;
+  position: absolute;
+  right: 25px; 
+  top: 50%;
+  transform: translateY(10%);
+}
+
+.Forget_password {
+  text-align: right;
+  margin-bottom: 5%;
+  background-color: #d7eaa8;
+  font-weight: 700;
+  color: #556b2f;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px){
+  .Login_Container{
+    margin: 10% 25%;
+    padding: 5%;
+    box-shadow: 0px 4px 8px #556b2f;
+    background-color: #d7eaa8;
+    border-radius: 10px;
+    font-size: 3vw;
   }
 
-  .Forget_password{
-   text-align: right;
-   margin-bottom: 5%;
-   background-color: white;
-    color: rgb(65, 179, 84);
+  .Forget_password {
+    text-align: right;
+    margin-bottom: 5%;
+    background-color: #d7eaa8;
+    font-weight: 400;
+    color: #556b2f;
     border: none;
     cursor: pointer;
   }
-
-  .ContentBorder {
-    padding: 2% 20%;
-    border: 2px solid rgb(65, 179, 84);
-    transition: all 0.2s ease-out;
-    box-shadow: 0px 4px 8px rgb(65, 179, 84);
-    top: -0.4vw;
-    border-radius: 25px;
-  }
-  
-  .ContentBorder input,
-  .ContentBorder select {
-    padding: 10px ;
-    max-width: 100%;
-    margin-top: 5%;
-  }
-
-    
-  .ContentBorder input:hover, .ContentBorder select:hover{
-    transition: all 0.2s ease-out;
-    box-shadow: 0px 4px 8px rgb(65, 179, 84);
-    top: -0.4vw;
-  }
-  
-  .button_container button {
-    background-color: rgb(65, 179, 84);
-    padding: 0.7vw 2vw ;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-
-  .button_container button:hover{
-    border: 1px solid rgb(196, 250, 205);
-    transition: all 0.2s ease-out;
-    box-shadow: 0px 4px 8px  rgb(65, 179, 84);
-    top: -1vw;
-  }
-
-  .input-with-icon {
-    position: relative;
-  }
-  
-  .field-icon {
-    position: absolute;
-    right: 0; 
-    top: 50%;   
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-
-  .resend-OTP{
-    background-color:  rgb(65, 179, 84);
-    color: white;
-    padding: 1%;
-    border-radius: 5px;
-  }
-  
+}

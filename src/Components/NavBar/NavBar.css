@@ -1,33 +1,32 @@
 .nav_container {
-    background-color: #41b354;
+    background-color: #556b2f ;
     padding: 1.7vw;
     justify-content: space-evenly;
     display :flex;
-    color:white;
+    color:#d7eaa8 ;
     width: 100%; 
   }
+
 
   .nav_logo{
     font-family: 'Seaweed Script', cursive;
     font-weight: 700;
     font-size: 1.5vw;
-    color: white;
+    color: #d7eaa8 ;
   }
 
   .nav_btn{
-    background-color: white;
-    color: #41b354;
+    background-color: #d7eaa8;
+    color: #556b2f ;
     border-radius: 25px;
     padding: 10% 15%;
   }
 
   .nav_btn:hover{
-    background-color:#41b354;
-    color: white;
+    background-color:#556b2f ;
+    color: #d7eaa8 ;
     border-radius: 25px;
-    padding: 10% 20%;
-    border: 2px solid white;
-    box-shadow: 0px 4px 4px rgba(12, 12, 12, 0.2);
+    border: 2px solid #d7eaa8 ;
   }
 
   .nav_btns{
@@ -41,7 +40,7 @@
   }
 
   #text{
-    color: white;
+    color: #d7eaa8 ;
   }
 
 
@@ -59,8 +58,8 @@
   }
 
   .nav_btn{
-    background-color: white;
-    color: #41b354;
+    background-color: #d7eaa8 ;
+    color: #556b2f ;
     border-radius: 25px;
     padding: 1vw 3vw;
     font-size: 3vw;
@@ -70,7 +69,7 @@
     font-family: 'Seaweed Script', cursive;
     font-weight: 700;
     font-size: 1.5vw;
-    color: white;
+    color: #d7eaa8 ;
     font-size: 3vw;
   }
 

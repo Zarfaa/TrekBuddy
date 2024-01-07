@@ -177,7 +177,7 @@ export const verifyUserOTP = (otp, userId, setIsVerified, setLoadingStates) => a
     toast.success(res.message)
   } catch (error) {
     setLoadingStates(false)
-    toast.error(error.response.message)
+    toast.error(error.response.data.message)
     dispatch({
       type: VERIFY_USER_OTP_FAIL,
     });

@@ -47,11 +47,9 @@ const UserLogin = () => {
   }
 
   return (
-    <>
-      <form className="account_Container" onSubmit={handleSubmit}>
-        <div className="ContentBorder">
-          <h2 className="Title">User Login</h2>
-          <div>
+      <form className="Login_Container" onSubmit={handleSubmit}>
+          <h2 className="Title">Welcome Back!</h2>
+          <div className="mb-3">
             <label htmlFor="email">Email:</label>
             <input
               className="form-control"
@@ -65,7 +63,7 @@ const UserLogin = () => {
             />
           </div>
 
-          <div className="input-with-icon">
+          <div className="input-with-icon mb-3">
             <label htmlFor="password">Password:</label>
             <input
               id="password"
@@ -80,8 +78,8 @@ const UserLogin = () => {
             />
             <i
               onClick={togglePasswordVisibility}
-              className={`fa fa-fw ${showPassword ? "fa-eye-slash" : "fa-eye"
-                } toggle-password field-icon`}
+              className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
+                }  field-icon`}
             ></i>
           </div>
 
@@ -95,11 +93,9 @@ const UserLogin = () => {
               ) : (
                 ""
               )}
-              Submit</button>
+              Login</button>
           </div>
-        </div>
       </form>
-    </>
   );
 };
 

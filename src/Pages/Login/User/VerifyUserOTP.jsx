@@ -1,10 +1,11 @@
-import React, { useState,  useEffect } from 'react';
-import { verifyUserOTP } from "../../../Redux/Actions/UserActions";
+import React, { useState, useEffect } from 'react';
+import { verifyUserOTP, resendUserOTP } from "../../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
-
+import '.././OTP.css'
 const VerifyOTP = () => {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState();
   const [loadingStates, setLoadingStates] = useState(false);
   const [otp, setOtp] = useState('');
   const [isVerified, setIsVerified] = useState(false);
@@ -15,7 +16,7 @@ const VerifyOTP = () => {
     console.log("userId", userId);
     e.preventDefault();
     setLoadingStates(true)
-    dispatch(verifyUserOTP(otp, userId, setIsVerified ,setLoadingStates));
+    dispatch(verifyUserOTP(otp, userId, setIsVerified, setLoadingStates));
   };
 
   useEffect(() => {
@@ -23,14 +24,21 @@ const VerifyOTP = () => {
   }, [loading]);
 
   if (isVerified) {
-      return <Navigate replace to="/resetUserpassword" />;
-    }
+    return <Navigate replace to="/resetUserpassword" />;
+  }
 
+  const handleResend = (e) => {
+    e.preventDefault();
+    setLoadingStates(true);
+    dispatch(resendUserOTP(email, setLoadingStates));
+  };
 
   return (
-    <div style={{ margin: "10% 30%", padding: "5%" }} className='card'>
-      <h1 className='ms-5'>Verify OTP</h1>
-      <form onSubmit={handleSubmit} style={{ margin: "10%" }}>
+    <div style={{ margin: "5% 30%", padding: "5%" ,   'background-color': '#d7eaa8' }} className='card'>
+      <Link to="/sendUserOTP"><button type="submit" className="back-btn">
+        Go Back
+      </button></Link>
+      <form onSubmit={handleSubmit} >
         <div className="mb-3">
           <input
             type="text"
@@ -42,19 +50,18 @@ const VerifyOTP = () => {
           />
           <span>Enter OTP Sent to your Email!</span>
         </div>
-        <button type="submit" className="btn" style={{ backgroundColor: "#41b354", color: "white" }}>
-        {loadingStates ? (
-                 <div class="spinner-border text-light" role="status">
-                 <span class="visually-hidden">Loading...</span>
-               </div>
-                ) : (
-                  ""
-                )}
+        <button type="submit" className="verify-btn">
+          {loadingStates ? (
+            <div class="spinner-border text-light" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            ""
+          )}
           Verify OTP
         </button>
-        <Link to="/sendUserOTP"><button type="submit" className="btn" style={{ backgroundColor: "grey", color: "white" }}>
-          Back
-        </button></Link>
+        <div className='mt-2'>Haven't Received an OTP? <button type="button" className='resend-OTP' onClick={handleResend}> Resend Code</button></div>
+
       </form>
     </div>
   );

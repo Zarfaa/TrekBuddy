@@ -1,78 +1,28 @@
+.Margin {
+  margin: 3% 10%;
+  padding: 5%;
+  background-color: #d7eaa8;
+  box-shadow: 2px 2px 6px #ede7e7, -2px -2px 20px #556b2f;
+}
 
-.multi-step-form {
-    max-width: 80vw;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
+.Photos_container {
+  border: 2px dotted #556b2f;
+  padding: 10%;
+  margin: 5%;
+}
 
-  .step-indicators {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-   
-  }
+.text-margin {
+  margin: 0% 10%;
+}
 
-  .step-indicators:hover{
-    cursor: pointer;
-  }
+.Top-text{
+  color: #556b2f;
+  margin: 5% 10%;
+}
 
-  .step {
-    flex: 1;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    color: #333;
-    margin-top: 5%;
-  }
-  
-  .step.active {
-    color: rgb(65, 179, 84); 
-  }
-  
+.Top-text h3 {
+  font-family: 'Seaweed Script', cursive;
+  font-weight: 700;
+  font-size: 2.5vw;
+}
 
-  .step-content {
-    margin-bottom: 20px;
-  }
-  
-
-  .button {
-    padding: 10px 20px;
-    background-color: rgb(65, 179, 84);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color:rgb(65, 179, 84);
-  }
-  
-
-  .progress-bar {
-    background-color: #ccc;
-    height: 5px;
-    margin-bottom: 20px;
-  }
-  
-  .progress-fill {
-    background-color: rgb(65, 179, 84);
-    height: 100%;
-    transition: width 0.5s ease-in-out;
-  }
-  
-  .step {
-    flex: 1;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    color: #333;
-    margin-top: 5%;
-  }
-
-  
-
-
-    

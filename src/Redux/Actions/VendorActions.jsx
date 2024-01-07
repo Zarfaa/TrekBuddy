@@ -16,7 +16,10 @@ import {
   RESET_VENDOR_PASSWORD_SUCCESS,
   RESET_VENDOR_PASSWORD_FAIL,
   VENDOR_PROFILE_UPDATE_SUCCESS,
-  VENDOR_PROFILE_UPDATE_FAIL
+  VENDOR_PROFILE_UPDATE_FAIL,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_FAIL
+  
 } from "./ActionTypes";
 import { toast } from "react-toastify";
 
@@ -70,7 +73,6 @@ export const getVendorProfile = (id) => async (dispatch) => {
       type: VENDOR_PROFILE_SUCCESS,
       payload: res.data,
     });
-    toast.success(res.data.message)
   } catch (error) {
     toast.error(error.res.data.message)
     dispatch({
@@ -129,7 +131,6 @@ export const sendVendorOTP = (email, setLoadingStates) => async (dispatch) => {
       payload: res.data,
     });
     setLoadingStates(false)
-    localStorage.setItem("userId", res.data.userId);
     toast.error(res.data.message)
   } catch (error) {
     setLoadingStates(false)
@@ -177,7 +178,23 @@ export const verifyVendorOTP = (otp, userId, setLoadingStates) => async (dispatc
 };
 
 
-
+export const createPost = (data, setLoadingStates) => async (dispatch) => {
+  try {
+    const res = await axios.post("/create-BookingDetails", data);
+    dispatch({
+      type: CREATE_POST_SUCCESS,
+      payload: res.data,
+    });
+    setLoadingStates(false)
+    toast.error(res.data.message)
+  } catch (error) {
+    setLoadingStates(false)
+    toast.error(error.res.data.message)
+    dispatch({
+      type: CREATE_POST_FAIL,
+    });
+  }
+};
 
 // LOGOUT ACTION
 export const logout = (setRedirect) => (dispatch) => {

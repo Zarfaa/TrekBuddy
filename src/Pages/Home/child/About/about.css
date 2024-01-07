@@ -24,12 +24,14 @@
 .section__title1{
   font-family: 'Seaweed Script', cursive;
   font-size: 4vw;
-  color: rgb(65, 179, 84);
+  color: #556b2f;
   display: flex;
   padding-left: 15%;
 }
 
-
+.icon-color{
+  color: #556b2f;
+}
 
 .section__title{
   font-size: 4vw;

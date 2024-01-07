@@ -45,7 +45,7 @@ const ResetPassword = () => {
   }
 
   return (
-    <div style={{ margin: "10% 30%", padding: "5%" }} className='card'>
+    <div style={{ margin: "10% 30%", padding: "5%" , 'background-color': '#d7eaa8'}} className='card'>
       <h1 >Set a New Password</h1>
       <div className="fxt-form">
         <form onSubmit={handleSubmit}  >

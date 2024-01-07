@@ -1,5 +1,5 @@
 import "./Signup.css";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { registerUser } from "../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -70,22 +70,24 @@ const UserSignup = () => {
     setLoadingStates(true);
     dispatch(registerUser({ ...userData, password: trimmedPassword }, setLoadingStates, setSignupSuccess, setError))
     setUserData(
-      {firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      DateOfBirth: "",
-      Gender: "",
-      role: "User",
-      phoneNumber: ""})
+      {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        DateOfBirth: "",
+        Gender: "",
+        role: "User",
+        phoneNumber: ""
+      })
   };
 
   useEffect(() => {
     setLoadingStates(loading);
   }, [loading]);
 
-  if(signupSuccess){
-    return <Navigate replace to="/"/>
+  if (signupSuccess) {
+    return <Navigate replace to="/" />
   }
 
 
@@ -94,149 +96,159 @@ const UserSignup = () => {
   };
 
   return (
-    <>
-      <form className="account_Container" onSubmit={handleSubmit}>
-        <p>
-          Already Have an account?{" "}
-          <Link to="/userLogin" >
-            Login
-          </Link>
-        </p>
-        <div className="ContentBorder">
-          <h2 className="Title">User Sign Up</h2>
-          <div>
-            <label htmlFor="firstName">FirstName:</label>
-            <input
-              name="firstName"
-              className="form-control"
-              value={userData.firstName}
-              type="text"
-              id="firstName"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
+    <form className="SignUp_Container" onSubmit={handleSubmit}>
+      <p className="account mb-5">Already Have an account? <Link to="/userLogin" >Login</Link>
+      </p>
+      <div className="mb-3">
+        <h2 className="Title">Welcome!</h2>
+      </div>
+      <div className="row mb-3">
+        <div className="col-6">
+        <label htmlFor="firstName">FirstName:</label>
+        <input
+          name="firstName"
+          className="form-control"
+          value={userData.firstName}
+          type="text"
+          id="firstName"
+          required
+          onChange={handleInputChange}
+        />
+        </div>
+        <div className="col-6">
+        <label htmlFor="lastName">LastName:</label>
+        <input
+          name="lastName"
+          value={userData.lastName}
+          className="form-control"
+          type="text"
+          id="lastName"
+          required
+          onChange={handleInputChange}
+        />
+        </div>
+        </div>
 
-          <div>
-            <label htmlFor="lastName">LastName:</label>
-            <input
-              name="lastName"
-              value={userData.lastName}
-              className="form-control"
-              type="text"
-              id="lastName"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
+      <div className="mb-3">
+        <label htmlFor="email">Email:</label>
+        <input
+          name="email"
+          value={userData.email}
+          className="form-control"
+          type="email"
+          id="email"
+          required
+          onChange={handleInputChange}
+        />
+      </div>
 
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              name="email"
-              value={userData.email}
-              className="form-control"
-              type="email"
-              id="email"
-              required
-              onChange={handleInputChange}
-            />
-          </div>
+      <div className="input-with-icon mb-3">
+        <label htmlFor="password">Password:</label>
+        <input
+          id="password"
+          type={showPassword ? "text" : "password"}
+          className="form-control"
+          name="password"
+          placeholder="Password"
+          required="required"
+          autoComplete="password"
+          value={userData.password}
+          onChange={handleInputChange}
+        />
+        <i
+          onClick={togglePasswordVisibility}
+          className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
+            } toggle-password field-icon`}
+        ></i>
+      </div>
 
-          <div className="input-with-icon">
-            <label htmlFor="password">Password:</label>
-            <input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              className="form-control"
-              name="password"
-              placeholder="Password"
-              required="required"
-              autoComplete="password"
-              value={userData.password}
-              onChange={handleInputChange}
-            />
-            <i
-              onClick={togglePasswordVisibility}
-              className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
-                } toggle-password field-icon`}
-            ></i>
-          </div>
+      <div className="mb-3">
+        <label htmlFor="DateOfBirth">Date of Birth:</label>
+        <input
+          name="DateOfBirth"
+          value={userData.DateOfBirth}
+          placeholder="MM/DD/YY"
+          id="DateOfBirth"
+          onChange={handleInputChange}
+          className="form-control"
+          required
+        />
+      </div>
 
-          <div>
-            <label htmlFor="DateOfBirth">Date of Birth:</label>
-            <input
-              name="DateOfBirth"
-              value={userData.DateOfBirth}
-              placeholder="MM/DD/YY"
-              id="DateOfBirth"
-              onChange={handleInputChange}
-              className="form-control"
-              required
-            />
-          </div>
+      <div className="mb-3">
+        <div className="row">
+          <label>Gender:</label>
+        </div>
 
-          <div>
-            <label>Gender:</label>
-            <label htmlFor="GenderMale">Male
+        <div className="row">
+          <div className="form-check ms-3">
+            <label className="form-check-label" htmlFor="GenderMale">
+              Male
               <input
+                className="form-check-input"
                 name="Gender"
                 value="Male"
                 type="radio"
                 id="GenderMale"
-                className="form-control"
                 onChange={handleInputChange}
                 required
               />
             </label>
-            <label htmlFor="GenderFemale">Female</label>
-            <input
-              name="Gender"
-              value="Female"
-              type="radio"
-              id="GenderFemale"
-              className="form-control"
-              onChange={handleInputChange}
-              required
-            />
           </div>
 
-          <div>
-            <label htmlFor="phoneNumber">Contact Number:</label>
-            <input
-              name="phoneNumber"
-              value={userData.phoneNumber}
-              type="tel"
-              id="phoneNumber"
-              pattern="[0-9]*"
-              className="form-control"
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="button_container">
-            <button type="submit">
-              {loadingStates ? (
-                <div class="spinner-border text-light" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              ) : (
-                "Submit"
-              )}
-              </button>
-            <div style={{ color: 'red' }}>
-              {error.email && <p>{error.email}</p>}
-              {error.password && <p>{error.password}</p>}
-              {error.DateOfBirth && <p>{error.DateOfBirth}</p>}
-              {error.phoneNumber && <p>{error.phoneNumber}</p>}
-              {error.message && <p>{error.message}</p>}
-            </div>
-
+          <div className="form-check">
+            <label className="form-check-label" htmlFor="GenderFemale">
+              Female
+              <input
+                className="form-check-input"
+                name="Gender"
+                value="Female"
+                type="radio"
+                id="GenderFemale"
+                onChange={handleInputChange}
+                required
+              />
+            </label>
           </div>
         </div>
-      </form>
-    </>
+      </div>
+
+
+      <div className="mb-3">
+        <label htmlFor="phoneNumber">Contact Number:</label>
+        <input
+          name="phoneNumber"
+          value={userData.phoneNumber}
+          type="tel"
+          id="phoneNumber"
+          pattern="[0-9]*"
+          className="form-control"
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+
+      <div className="button_container">
+        <button type="submit">
+          {loadingStates ? (
+            <div class="spinner-border text-light" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            "Submit"
+          )}
+        </button>
+        <div style={{ color: 'red' }}>
+          {error.email && <p>{error.email}</p>}
+          {error.password && <p>{error.password}</p>}
+          {error.DateOfBirth && <p>{error.DateOfBirth}</p>}
+          {error.phoneNumber && <p>{error.phoneNumber}</p>}
+          {error.message && <p>{error.message}</p>}
+        </div>
+
+      </div>
+    </form>
+
   );
 };
 

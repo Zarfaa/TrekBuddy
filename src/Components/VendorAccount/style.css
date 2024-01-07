@@ -8,8 +8,8 @@
   
   .field-icon {
     position: absolute;
-    right: 10px;  /* Adjust the right value as needed */
-    top: 50%;    /* Center the icon vertically */
+    right: 10px;  
+    top: 50%;    
     transform: translateY(-50%);
     cursor: pointer;
   }

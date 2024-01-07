@@ -13,7 +13,9 @@ import {
   VENDOR_PROFILE_SUCCESS,
   VENDOR_PROFILE_FAIL,
   VENDOR_PROFILE_UPDATE_SUCCESS,
-  VENDOR_PROFILE_UPDATE_FAIL
+  VENDOR_PROFILE_UPDATE_FAIL,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_FAIL
 } from "../Actions/ActionTypes";
 
 const Vendor = {
@@ -32,6 +34,7 @@ const VendorReducer = (state = Vendor, action) => {
   switch (type) {
     case VENDOR_REGISTER_SUCCESS:
     case VENDOR_LOGIN_SUCCESS:
+      case CREATE_POST_SUCCESS:
     case VENDOR_PROFILE_UPDATE_SUCCESS:
       return {
         ...state,
@@ -51,12 +54,15 @@ const VendorReducer = (state = Vendor, action) => {
     case VENDOR_LOGIN_FAIL:
     case VENDOR_PROFILE_FAIL:
     case VENDOR_PROFILE_UPDATE_FAIL:
+    case CREATE_POST_FAIL:
       return {
         ...state,
         isVendorAuthenticated: false,
         vendor: null,
         error: payload
       };
+
+    
 
       case LOGOUT_SUCCESS:
         return {
