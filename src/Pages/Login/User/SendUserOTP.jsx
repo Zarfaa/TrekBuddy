@@ -7,18 +7,19 @@ const SendOTP = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [loadingStates, setLoadingStates] = useState(false);
-  const { isSuccess, loading } = useSelector((state) => state.User);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { loading } = useSelector((state) => state.User);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoadingStates(true);
-    dispatch(sendUserOTP(email, setLoadingStates));
+    dispatch(sendUserOTP(email,setIsSuccess, setLoadingStates));
   };
 
   const handleResend = (e) => {
     e.preventDefault();
     setLoadingStates(true);
-    dispatch(resendUserOTP(email, setLoadingStates));
+    dispatch(resendUserOTP(email, setIsSuccess, setLoadingStates));
   };
 
   useEffect(() => {

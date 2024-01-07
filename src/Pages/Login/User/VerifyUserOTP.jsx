@@ -1,29 +1,26 @@
 import React, { useState,  useEffect } from 'react';
 import { verifyUserOTP } from "../../../Redux/Actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const VerifyOTP = () => {
   const dispatch = useDispatch();
   const [loadingStates, setLoadingStates] = useState(false);
   const [otp, setOtp] = useState('');
-  const { isVerified, loading } = useSelector((state) => state.User);
+  const [isVerified, setIsVerified] = useState(false);
+  const { loading } = useSelector((state) => state.User);
 
   const handleSubmit = async (e) => {
     const userId = localStorage.getItem("userId");
     console.log("userId", userId);
     e.preventDefault();
     setLoadingStates(true)
-    dispatch(verifyUserOTP(otp, userId ,setLoadingStates));
+    dispatch(verifyUserOTP(otp, userId, setIsVerified ,setLoadingStates));
   };
 
   useEffect(() => {
     setLoadingStates(loading);
   }, [loading]);
-  
-  if (!isVerified === 'verifyOTP') {
-    return <Navigate replace to="/sendOTP" />;
-  }
 
   if (isVerified) {
       return <Navigate replace to="/resetUserpassword" />;
@@ -55,6 +52,9 @@ const VerifyOTP = () => {
                 )}
           Verify OTP
         </button>
+        <Link to="/sendUserOTP"><button type="submit" className="btn" style={{ backgroundColor: "grey", color: "white" }}>
+          Back
+        </button></Link>
       </form>
     </div>
   );

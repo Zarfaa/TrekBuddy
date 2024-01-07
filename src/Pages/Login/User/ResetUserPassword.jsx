@@ -1,16 +1,15 @@
 import React, { useState , useEffect} from "react";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { resetUserpassword } from "../../../Redux/Actions/UserActions";
 import { useDispatch , useSelector} from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const { loading, passwordSuccess } = useSelector((state) => state.User);
   const [error, setError] = useState("");
   const [loadingStates, setLoadingStates] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [AccountData, setAccountData] = useState({
     newPassword: "",
     confirmPassword: ""
@@ -38,8 +37,7 @@ const ResetPassword = () => {
   }
 
   if(passwordSuccess){
-    toast.success("Password Reset Successfull!")
-    return <Navigate replace to="/" />;
+    return <Navigate replace to="/userlogin" />;
   }
 
   const togglePasswordVisibility = () => {
@@ -64,7 +62,7 @@ const ResetPassword = () => {
             />
             <i
               onClick={togglePasswordVisibility}
-              className={`fa fa-fw ${showPassword ? "fa-eye-slash" : "fa-eye"
+              className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
                 } toggle-password field-icon`}
             ></i>
           </div>
@@ -82,7 +80,7 @@ const ResetPassword = () => {
             />
             <i
               onClick={togglePasswordVisibility}
-              className={`fa fa-fw ${showPassword ? "fa-eye-slash" : "fa-eye"
+              className={`fa fa-fw ${showPassword ? "fa-eye" : "fa-eye-slash"
                 } toggle-password field-icon`}
             ></i>
           </div>
@@ -98,7 +96,6 @@ const ResetPassword = () => {
                 )}
                 Update
             </button>
-
           </div>
         </form>
       </div>

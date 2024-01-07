@@ -18,13 +18,16 @@ const EditProfile = () => {
 
 useEffect(() => {
   dispatch(getUserProfile(id))
+}, []);
+
+useEffect(() => {
   setUserData({
     userName: data.name,
     DateOfBirth: data.DateOfBirth,
     contactNumber: data.phoneNumber,
-    email:data.email
+    email: data.email
   });
-}, []);
+}, [data]);
 
 
   return (

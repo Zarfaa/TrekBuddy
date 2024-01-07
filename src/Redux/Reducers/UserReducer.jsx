@@ -22,8 +22,6 @@ const initialState = {
   data: [],
   error: null,
   isUserAuthenticated: false,
-  isSuccess: false,
-  isVerified: false,
   passwordSuccess: false,
   currentStep: null,
 };
@@ -91,7 +89,6 @@ const userReducer = (state = initialState, action) => {
     case RESEND_USER_OTP_SUCCESS:
       return {
         ...state,
-        isSuccess: true,
         access: payload.access_token,
         data: payload,
         currentStep: 'sendOTP',
@@ -100,7 +97,6 @@ const userReducer = (state = initialState, action) => {
     case VERIFY_USER_OTP_SUCCESS:
       return {
         ...state,
-        isVerified: true,
         access: payload.access_token,
         data: payload,
         // currentStep: 'verifyOTP',
@@ -112,14 +108,12 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         data: null,
-        isSuccess: false
       };
 
     case VERIFY_USER_OTP_FAIL:
       return {
         ...state,
         data: null,
-        isVerified: false
       };
 
     default:

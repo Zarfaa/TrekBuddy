@@ -125,14 +125,16 @@ export const resetUserpassword = (data, userId, setLoadingStates) => async (disp
   }
 };
 
-export const sendUserOTP = (email, setLoadingStates) => async (dispatch) => {
+export const sendUserOTP = (email, setIsSuccess,  setLoadingStates) => async (dispatch) => {
   try {
     const res = await axios.post("user/send-otp", {email});
     dispatch({
       type: SEND_USER_OTP_SUCCESS,
       payload: res.data,
     });
+    setIsSuccess(true);
     setLoadingStates(false)
+    
     localStorage.setItem("userId", res.data.userId);
     toast.success(res.data.message)
   } catch (error) {
@@ -163,14 +165,14 @@ export const resendUserOTP = (email, setLoadingStates) => async (dispatch) => {
   }
 };
 
-export const verifyUserOTP = (otp, userId, setLoadingStates) => async (dispatch) => {
-  const body = JSON.stringify({ otp, userId });
+export const verifyUserOTP = (otp, userId, setIsVerified, setLoadingStates) => async (dispatch) => {
   try {
-    const res = await axios.post("user/verify-otp", body);
+    const res = await axios.post("user/verify-otp", { otp, userId });
     dispatch({
       type: VERIFY_USER_OTP_SUCCESS,
       payload: res.data,
     });
+    setIsVerified(true);
     setLoadingStates(false)
     toast.success(res.message)
   } catch (error) {
