@@ -25,14 +25,14 @@ function MyAccount() {
         <Nav variant="pills" className="flex-column mt-3 pb-5">
 
         <Nav.Item className="my-2 mx-0">
-            <Nav.Link className="p-3" eventKey="first" style={{ backgroundColor: "#41b354", color: "white" }}>
+            <Nav.Link className="p-3" eventKey="first" style={{ backgroundColor: "#556b2f ", color: "white" }}>
               {" "}
               <i class="fa-solid fa-user-pen"></i> View Profile
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item className="my-2 mx-0">
-            <Nav.Link className="p-3" eventKey="second" style={{ backgroundColor: "#41b354", color: "white" }}>
+            <Nav.Link className="p-3" eventKey="second" style={{ backgroundColor: "#556b2f ", color: "white" }}>
               {" "}
               <i class="fa-solid fa-user-pen"></i> Edit Profile
             </Nav.Link>
@@ -40,7 +40,7 @@ function MyAccount() {
 
           <Nav.Item className="my-2 mx-0">
             <Nav.Link
-            style={{ backgroundColor: "#41b354", color: "white" }}
+            style={{ backgroundColor: "#556b2f ", color: "white" }}
               className="p-3"
               eventKey="third"
               onClick={() => {

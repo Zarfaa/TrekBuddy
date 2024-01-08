@@ -16,16 +16,26 @@
 
   .Profile_Data{
     margin: 5% 15%;
+
   }
 
   .button{
     background-color:  #556b2f ;
     color: white;
     border: none;
+    padding: 2% 5%;
+    border-radius: 25px;
+  }
+
+  .button:hover{
+    background-color: #d7eaa8;
+    color:  #556b2f ;
+    border: none;
+    padding: 2% 5%;
     border-radius: 25px;
   }
 
   .field-color{
-    background-color: rgb(222, 224, 224);
+    background-color: #d7eaa8;
   }
   
